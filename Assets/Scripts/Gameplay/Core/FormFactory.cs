@@ -2,15 +2,8 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GenerateForm : MonoBehaviour
+public class FormFactory : MonoBehaviour
 {
-    
-    // form behaviour
-    enum FormType{
-        Correct,
-        Incorrect,
-        PinkSlips
-    }
 
     enum IncorrectFormVariation{
         MissingSignature,
@@ -19,25 +12,25 @@ public class GenerateForm : MonoBehaviour
         MissingStamp,
     }
 
-    FormType currentFormType;
-    FormType nextFormType;
-    float formRNG;
-
-
-    // form components
-    [SerializeField] SpriteRenderer signatureRenderer;
-    [SerializeField] SpriteRenderer companyWatermarkRenderer;
-    [SerializeField] SpriteRenderer formText;
-    [SerializeField] SpriteRenderer stampRenderer;
+    [SerializeField] GameObject formPrefab;
+    GameObject generatedForm;
+    FormData formData;
 
 
     void Awake(){
-        DefineNextFormType();
+        GenerateForm();
 
     }
 
-    void DefineNextFormType(){
-        formRNG = Random.value;
+    void GenerateForm(){
+        var formRNG = Random.value;
+
+        generatedForm = Instantiate(formPrefab, Vector3.zero, Quaternion.identity);
+        
+        if (!generatedForm.TryGetComponent<FormData>(out formData)){
+            Debug.Log("Cant find formdata in prefab");
+            return;
+        }
 
         if (formRNG > 0.5f){
             GenerateIncorrectForm();
@@ -47,10 +40,8 @@ public class GenerateForm : MonoBehaviour
 
     }
 
-    void GenerateIncorrectForm(){
-
-        nextFormType = FormType.Incorrect;
-        
+    void GenerateIncorrectForm(){ 
+        formData.currentFormType = FormData.FormType.Incorrect;
 
         // generate random number of a enum length
         int rng = Random.Range(0, Enum.GetNames(typeof(IncorrectFormVariation)).Length);
@@ -61,19 +52,19 @@ public class GenerateForm : MonoBehaviour
         switch(choosenFormVariation){
 
             case IncorrectFormVariation.MissingSignature :
-                signatureRenderer.color = Color.red;
+                formData.signatureRenderer.color = Color.red;
                 break;
 
             case IncorrectFormVariation.MissingCompanyWM :
-                companyWatermarkRenderer.color = Color.red;
+                formData.companyWatermarkRenderer.color = Color.red;
                 break;
             
             case IncorrectFormVariation.Forged :
-                formText.color = Color.red;
+                formData.formText.color = Color.red;
                 break;
 
             case IncorrectFormVariation.MissingStamp :
-                stampRenderer.color = Color.red;
+                formData.stampRenderer.color = Color.red;
                 break;
 
             default :
@@ -87,8 +78,8 @@ public class GenerateForm : MonoBehaviour
     }
 
     void GenerateCorrectForm(){
-        nextFormType = FormType.Correct;
-
+        formData.currentFormType = FormData.FormType.Incorrect;
+        
         Debug.Log("Correct Form");
     }
 
