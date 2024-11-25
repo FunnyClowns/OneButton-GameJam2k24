@@ -18,12 +18,16 @@ public class FormFactory : MonoBehaviour
 
 
     void Awake(){
-        GenerateForm();
+        InvokeRepeating(nameof(GenerateForm), 0f, 1f);
 
     }
 
     void GenerateForm(){
         var formRNG = Random.value;
+
+        if (generatedForm != null){
+            Destroy(generatedForm);
+        }
 
         generatedForm = Instantiate(formPrefab, Vector3.zero, Quaternion.identity);
         
@@ -79,7 +83,7 @@ public class FormFactory : MonoBehaviour
 
     void GenerateCorrectForm(){
         formData.currentFormType = FormData.FormType.Incorrect;
-        
+
         Debug.Log("Correct Form");
     }
 
