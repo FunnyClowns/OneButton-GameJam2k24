@@ -10,6 +10,13 @@ public class InputHandler : MonoBehaviour, ISliderValue
     [SerializeField] InputAction input;
     [SerializeField] FormFactory formFactory;
     [SerializeField] ScoreManager score;
+
+    [SerializeField] SliderFiller acceptFiller;
+    [SerializeField] SliderFiller denyFiller;
+    [SerializeField] GameObject acceptSliderBG;
+    [SerializeField] GameObject denySliderBG;    
+
+
     SlowTapInteraction slowTap;
 
     
@@ -27,6 +34,8 @@ public class InputHandler : MonoBehaviour, ISliderValue
     void Start(){
         input.AddBinding("<Keyboard>/space")
         .WithInteraction("slowTap(duration=1)");
+
+        InverseInputType();
     }
 
     void OnEnable(){
@@ -48,7 +57,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         input.canceled += context => { 
             if (context.interaction is SlowTapInteraction){
-                OnSlowTapCancelled();
+                InverseInputType();
                 isHolding = false;
             }
         };
@@ -76,17 +85,33 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
     }
 
-    void OnSlowTapCancelled(){
+    void InverseInputType(){
         
         // inverse input type
 
         if (currentInput == InputType.Accept){
             Debug.Log("Input deny");
             currentInput = InputType.Deny;
+
+            acceptFiller.shouldUpdate = false;
+            denyFiller.shouldUpdate = true;
+
+            acceptSliderBG.SetActive(false);
+            denySliderBG.SetActive(true);
+
+            acceptFiller.ResetSlider();
             
         } else {
             Debug.Log("input accept");
             currentInput = InputType.Accept;
+
+            acceptFiller.shouldUpdate = true;
+            denyFiller.shouldUpdate = false;
+
+            acceptSliderBG.SetActive(true);
+            denySliderBG.SetActive(false);
+
+            denyFiller.ResetSlider();
         }
     }
 

@@ -8,6 +8,8 @@ public class SliderFiller : MonoBehaviour
     ISliderValue sliderValue;
     bool succeedGetValue;
 
+    [HideInInspector] public bool shouldUpdate = true;
+
     Slider slider;
     
     
@@ -21,11 +23,15 @@ public class SliderFiller : MonoBehaviour
     
     void Update(){
 
-        if (succeedGetValue){
+        if (succeedGetValue && shouldUpdate){
             slider.value = sliderValue.GetSliderValue() * valueMultiplier;
 
             // Debug.Log("Value = " + sliderValue.GetSliderValue());
         }
+    }
+
+    public void ResetSlider(){
+        slider.value = 0;
     }
     
 }
