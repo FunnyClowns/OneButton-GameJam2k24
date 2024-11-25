@@ -14,15 +14,13 @@ public class FormFactory : MonoBehaviour
 
     [SerializeField] GameObject formPrefab;
     GameObject generatedForm;
-    FormData formData;
-
+    [HideInInspector] public FormData formData;
 
     void Awake(){
-        InvokeRepeating(nameof(GenerateForm), 0f, 1f);
-
+        GenerateForm();
     }
 
-    void GenerateForm(){
+    public void GenerateForm(){
         var formRNG = Random.value;
 
         if (generatedForm != null){
@@ -82,7 +80,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateCorrectForm(){
-        formData.currentFormType = FormData.FormType.Incorrect;
+        formData.currentFormType = FormData.FormType.Correct;
 
         Debug.Log("Correct Form");
     }
