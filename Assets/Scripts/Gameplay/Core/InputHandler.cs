@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputHandler : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class InputHandler : MonoBehaviour
         Deny,
     }
 
+    InputType currentInput;
+
     void Start(){
         input.AddBinding("<Keyboard>/space")
         .WithInteraction("slowTap(duration=0.5)");
@@ -22,13 +25,13 @@ public class InputHandler : MonoBehaviour
         input.Enable();
 
         input.performed += context => { 
-            if (context.interaction is UnityEngine.InputSystem.Interactions.SlowTapInteraction){
+            if (context.interaction is SlowTapInteraction){
                 OnSlowTapComplete();
             }
         };
 
         input.canceled += context => { 
-            if (context.interaction is UnityEngine.InputSystem.Interactions.SlowTapInteraction){
+            if (context.interaction is SlowTapInteraction){
                 OnSlowTapCancelled();
             }
         };
@@ -40,9 +43,9 @@ public class InputHandler : MonoBehaviour
 
     void OnSlowTapComplete(){
 
-        Debug.Log("input accept");
+        Debug.Log("Complete input");
 
-        score.ProgressScore(formFactory.formData.currentFormType, InputType.Accept);
+        score.ProgressScore(formFactory.formData.currentFormType, currentInput);
 
         formFactory.GenerateForm();
 
@@ -50,10 +53,18 @@ public class InputHandler : MonoBehaviour
 
     void OnSlowTapCancelled(){
 
-        Debug.Log("Input deny");
-        score.ProgressScore(formFactory.formData.currentFormType, InputType.Deny);
+        
+        
+        // inverse input type
 
-        formFactory.GenerateForm();
+        if (currentInput == InputType.Accept){
+            Debug.Log("Input deny");
+            currentInput = InputType.Deny;
+            
+        } else {
+            Debug.Log("input accept");
+            currentInput = InputType.Accept;
+        }
     }
 
 }
