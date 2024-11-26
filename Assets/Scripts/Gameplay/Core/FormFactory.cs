@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,10 @@ public class FormFactory : MonoBehaviour
         Forged,
         MissingStamp,
     }
+
+    [Header("Form Sprites")]
+    [SerializeField] Sprite correctStamp;
+    [SerializeField] List<Sprite> wrongStamp;
 
     [SerializeField] GameObject formPrefab;
     GameObject generatedForm;
@@ -66,7 +71,7 @@ public class FormFactory : MonoBehaviour
                 break;
 
             case IncorrectFormVariation.MissingStamp :
-                formData.stampRenderer.color = Color.red;
+                formData.stampRenderer.sprite = wrongStamp[Random.Range(0, wrongStamp.Count)];
                 break;
 
             default :

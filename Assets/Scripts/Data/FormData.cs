@@ -9,6 +9,7 @@ public class FormData : MonoBehaviour
 
     [HideInInspector] public FormType currentFormType;
 
+    [Header("Form Components")]
     public SpriteRenderer signatureRenderer;
     public SpriteRenderer companyWatermarkRenderer;
     public SpriteRenderer formText;

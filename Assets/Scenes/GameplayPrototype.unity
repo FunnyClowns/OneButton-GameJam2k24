@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c4da9a2c3549b46b4ad05e62824274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 10
+  gameTime: 60
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74446b44efbec5741ab625e05a4939b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctStamp: {fileID: 21300000, guid: 6f879bcc101f7f341bd39af0c5fa5dc3, type: 3}
+  wrongStamp:
+  - {fileID: 21300000, guid: 61c84485d24eec44b965dfae84a6e388, type: 3}
+  - {fileID: 21300000, guid: ee809460aa89396498630806dadf2c27, type: 3}
   formPrefab: {fileID: 5680979066311328138, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
   formData: {fileID: 0}
 --- !u!1 &1162154514

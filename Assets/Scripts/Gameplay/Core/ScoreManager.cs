@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     }   
 
     void IncorrectGuess(){
-        correctGuessCount++;
+        wrongGuessCount++;
 
         playerData.ChangeLiveAmount(-1);
 
