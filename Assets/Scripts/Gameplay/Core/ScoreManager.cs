@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    int correctGuess = 0;
-    int wrongGuess = 0;
+    int correctGuessCount = 0;
+    int wrongGuessCount = 0;
 
+    [Header("Other Components")]
+    [SerializeField] PlayerData playerData;
     [SerializeField] TextMeshProUGUI correctScoreText;
     [SerializeField] TextMeshProUGUI wrongScoreText;
 
@@ -13,19 +15,31 @@ public class ScoreManager : MonoBehaviour
 
         if (input == InputHandler.InputType.Accept)
             if (form == FormData.FormType.Correct){
-                correctGuess++;
+                CorrectGuess();
             } else {
-                wrongGuess++;
+                IncorrectGuess();
             }
 
         else if (input == InputHandler.InputType.Deny)
             if (form == FormData.FormType.Incorrect){
-                correctGuess++;
+                CorrectGuess();
             } else {
-                wrongGuess++;
+                IncorrectGuess();
             }
 
-        correctScoreText.text = "Correct Guess = " + correctGuess;
-        wrongScoreText.text = "Wrong Guess = " + wrongGuess;
+        correctScoreText.text = "Correct Guess = " + correctGuessCount;
+        wrongScoreText.text = "Wrong Guess = " + wrongGuessCount;
+    }
+
+    void CorrectGuess(){
+        correctGuessCount++;
+
+    }   
+
+    void IncorrectGuess(){
+        correctGuessCount++;
+
+        playerData.ChangeLiveAmount(-1);
+        
     }
 }
