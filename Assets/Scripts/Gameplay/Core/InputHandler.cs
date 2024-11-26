@@ -29,13 +29,10 @@ public class InputHandler : MonoBehaviour, ISliderValue
     bool isHolding;
     float holdingTime;
 
-    InputType currentInput;
+    InputType currentInput = InputType.Accept;
 
     void Start(){
-        input.AddBinding("<Keyboard>/space")
-        .WithInteraction("slowTap(duration=1)");
-
-        InverseInputType();
+        UpdateInputState();
     }
 
     void OnEnable(){
@@ -93,18 +90,19 @@ public class InputHandler : MonoBehaviour, ISliderValue
             Debug.Log("Input deny");
             currentInput = InputType.Deny;
 
-            acceptFiller.shouldUpdate = false;
-            denyFiller.shouldUpdate = true;
-
-            acceptSliderBG.SetActive(false);
-            denySliderBG.SetActive(true);
-
-            acceptFiller.ResetSlider();
+            
             
         } else {
             Debug.Log("input accept");
-            currentInput = InputType.Accept;
+            currentInput = InputType.Accept;  
+        }
 
+        UpdateInputState();
+    }
+
+    void UpdateInputState(){
+
+        if (currentInput == InputType.Accept){
             acceptFiller.shouldUpdate = true;
             denyFiller.shouldUpdate = false;
 
@@ -112,6 +110,16 @@ public class InputHandler : MonoBehaviour, ISliderValue
             denySliderBG.SetActive(false);
 
             denyFiller.ResetSlider();
+        } 
+
+        else if (currentInput == InputType.Deny){
+            acceptFiller.shouldUpdate = false;
+            denyFiller.shouldUpdate = true;
+
+            acceptSliderBG.SetActive(false);
+            denySliderBG.SetActive(true);
+
+            acceptFiller.ResetSlider();
         }
     }
 

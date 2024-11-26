@@ -1,9 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     int correctGuess = 0;
     int wrongGuess = 0;
+
+    [SerializeField] TextMeshProUGUI correctScoreText;
+    [SerializeField] TextMeshProUGUI wrongScoreText;
 
     public void ProgressScore(FormData.FormType form, InputHandler.InputType input){
 
@@ -21,7 +25,7 @@ public class ScoreManager : MonoBehaviour
                 wrongGuess++;
             }
 
-        Debug.Log("Correct Guess = " + correctGuess);
-        Debug.Log("Wrong Guess = " + wrongGuess);
+        correctScoreText.text = "Correct Guess = " + correctGuess;
+        wrongScoreText.text = "Wrong Guess = " + wrongGuess;
     }
 }
