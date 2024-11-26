@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    int correctGuessCount = 0;
-    int wrongGuessCount = 0;
+    public static int correctGuessCount = 0;
+    public static int wrongGuessCount = 0;
 
     [Header("Other Components")]
     [SerializeField] PlayerData playerData;
     [SerializeField] TextMeshProUGUI correctScoreText;
     [SerializeField] TextMeshProUGUI wrongScoreText;
+
+    void Start(){
+
+        // reset static variables
+        correctGuessCount = 0;
+        wrongGuessCount = 0;
+    }
 
     public void ProgressScore(FormData.FormType form, InputHandler.InputType input){
 
@@ -40,6 +47,6 @@ public class ScoreManager : MonoBehaviour
         correctGuessCount++;
 
         playerData.ChangeLiveAmount(-1);
-        
+
     }
 }
