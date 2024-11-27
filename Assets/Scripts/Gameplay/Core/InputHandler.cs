@@ -27,12 +27,15 @@ public class InputHandler : MonoBehaviour, ISliderValue
     }
 
     bool isHolding;
+    bool canSubmit;
     float holdingTime;
 
     InputType currentInput = InputType.Accept;
 
     void Start(){
         UpdateInputState();
+
+        canSubmit = true;
     }
 
     void OnEnable(){
@@ -47,7 +50,13 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         input.performed += context => { 
             if (context.interaction is SlowTapInteraction){
-                OnSlowTapComplete();
+                
+                if (canSubmit){
+                    canSubmit = false;
+
+                    OnSlowTapComplete();
+                }
+                
                 isHolding = false;
             }
         };
@@ -78,8 +87,17 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         score.ProgressScore(formFactory.formData.currentFormType, currentInput);
 
-        formFactory.GenerateForm();
+        formFactory.formData.SubmitForm(currentInput);
 
+        Invoke(nameof(TriggerFactoryToGenerate), 1.5f);
+
+    }
+
+    void TriggerFactoryToGenerate(){
+
+        canSubmit = true;
+
+        formFactory.GenerateForm();
     }
 
     void InverseInputType(){

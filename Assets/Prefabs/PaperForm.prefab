@@ -271,10 +271,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentFormType: 0
+  approvedStamp: {fileID: 21300000, guid: c24dcb656b656074ca586cf8b3f63a9a, type: 3}
+  deniedStamp: {fileID: 21300000, guid: 621300a57ef693646a2a3b1ac67f9347, type: 3}
   signatureRenderer: {fileID: 4373715253702303752}
   companyWatermarkRenderer: {fileID: 444567690825311685}
   formText: {fileID: 6582517289144831019}
   stampRenderer: {fileID: 7570315733602016782}
+  decisionStamp: {fileID: 6747643425721243595}
 --- !u!1 &6747643425721243595
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,8 +288,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7959696653606283575}
   - component: {fileID: 6360419668309055537}
+  - component: {fileID: 9184451826134385347}
   m_Layer: 0
-  m_Name: FormDecision
+  m_Name: DecisionStamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,8 +305,8 @@ Transform:
   m_GameObject: {fileID: 6747643425721243595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
-  m_LocalPosition: {x: 0.212, y: -0.311, z: 0}
-  m_LocalScale: {x: 0.20073, y: 0.176876, z: 1}
+  m_LocalPosition: {x: 0.201, y: -0.34047, z: 0}
+  m_LocalScale: {x: 0.33605012, y: 0.3901619, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3008760092404069407}
@@ -359,6 +363,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &9184451826134385347
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747643425721243595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d210e4224d868a4182d8fa46e61fc39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7438853794613658179
 GameObject:
   m_ObjectHideFlags: 0
