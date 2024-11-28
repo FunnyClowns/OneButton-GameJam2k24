@@ -27,6 +27,7 @@ public class FormData : MonoBehaviour
         decisionStamp.TryGetComponent<Animator>(out decisionStampAnimator);
         decisionStamp.TryGetComponent<SpriteRenderer>(out decisionStampRenderer);
 
+        VariateObjectTransform();
     }
 
     public void SubmitForm(InputHandler.InputType choice){
@@ -39,5 +40,33 @@ public class FormData : MonoBehaviour
             decisionStampRenderer.sprite = deniedStamp;
 
         decisionStampAnimator.Play("StartStamping");
+    }
+
+    void VariateObjectTransform(){
+
+        RandomizeTransformPosition(stampRenderer.transform, 0.05f, 0.05f);
+        RandomizeTransformScale(stampRenderer.transform, 1.1f);
+        RandomizeTransformRotation(stampRenderer.transform, 15f);
+    }
+
+    void RandomizeTransformPosition(Transform target, float xRange, float yRange){
+        target.localPosition = new Vector2(target.localPosition.x + Random.Range(-xRange, xRange), target.localPosition.y + Random.Range(-yRange, yRange));
+
+        return;
+    }
+
+    void RandomizeTransformScale(Transform target, float range){
+
+        var scaleMultiplier = Random.Range(1, range);
+
+        target.localScale = (Vector2)target.localScale * scaleMultiplier;
+
+        return;
+    }
+
+    void RandomizeTransformRotation(Transform target, float range){
+        target.localEulerAngles = new Vector3(0,0, Random.Range(-range, range));
+
+        return;
     }
 }

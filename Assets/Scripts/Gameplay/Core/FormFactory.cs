@@ -17,6 +17,11 @@ public class FormFactory : MonoBehaviour
     [SerializeField] Sprite correctStamp;
     [SerializeField] List<Sprite> wrongStamp;
 
+    [Header("Form Generation Data")]
+    [SerializeField] Vector2 formStartPosition;
+
+    
+    [Header("Other Components")]
     [SerializeField] GameObject formPrefab;
     GameObject generatedForm;
     [HideInInspector] public FormData formData;
@@ -32,7 +37,7 @@ public class FormFactory : MonoBehaviour
             Destroy(generatedForm);
         }
 
-        generatedForm = Instantiate(formPrefab, Vector3.zero, Quaternion.identity);
+        generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
         
         if (!generatedForm.TryGetComponent<FormData>(out formData)){
             Debug.Log("Cant find formdata in prefab");

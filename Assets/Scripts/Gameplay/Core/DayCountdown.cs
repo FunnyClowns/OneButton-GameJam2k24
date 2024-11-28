@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DayCountdown : MonoBehaviour
+public class DayCountdown : MonoBehaviour, ISliderValue
 {
     
     [Header("Timer")]
@@ -42,6 +42,12 @@ public class DayCountdown : MonoBehaviour
         } else {
             Debug.Log("LOST");
         }
+    }
+
+    // interfaces
+    public float GetSliderValue(){
+
+        return gameTimerCount;
     }
     
 }
