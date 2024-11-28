@@ -102,6 +102,11 @@ public class InputHandler : MonoBehaviour, ISliderValue
             return;
         }
 
+        // game is already over
+        if (GameState.currentState != GameState.StateType.Going){
+            formFactory.DeleteActiveForm();
+            return;
+        }
         canSubmit = true;
 
         formFactory.GenerateForm();
