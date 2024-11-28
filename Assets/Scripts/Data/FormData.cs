@@ -19,6 +19,7 @@ public class FormData : MonoBehaviour
     public SpriteRenderer formText;
     public SpriteRenderer stampRenderer;
     public GameObject decisionStamp;
+    Animator formAnimator;
 
     SpriteRenderer decisionStampRenderer;
     Animator decisionStampAnimator;
@@ -26,6 +27,10 @@ public class FormData : MonoBehaviour
     void Start(){   
         decisionStamp.TryGetComponent<Animator>(out decisionStampAnimator);
         decisionStamp.TryGetComponent<SpriteRenderer>(out decisionStampRenderer);
+        
+        if (TryGetComponent<Animator>(out formAnimator)){
+            formAnimator.Play("Form In");
+        }
 
         VariateObjectTransform();
     }
@@ -40,6 +45,12 @@ public class FormData : MonoBehaviour
             decisionStampRenderer.sprite = deniedStamp;
 
         decisionStampAnimator.Play("StartStamping");
+
+        Invoke(nameof(PlayExitAnimation), 1f);
+    }
+
+    void PlayExitAnimation(){
+        formAnimator.Play("Form Out");
     }
 
     void VariateObjectTransform(){

@@ -277,7 +277,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &306647864
 RectTransform:
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca8a8de360be4c43bb1f1bab71dc880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formAmount: 5
+  formAmount: 10
   playerData: {fileID: 1811570553}
   correctScoreText: {fileID: 921424066}
   wrongScoreText: {fileID: 1318135371}
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c4da9a2c3549b46b4ad05e62824274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 5
+  gameTime: 60
 --- !u!1001 &6718373586068004246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2559,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3008760092404069407, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.58
+      value: 10.34
       objectReference: {fileID: 0}
     - target: {fileID: 3008760092404069407, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_LocalPosition.z

@@ -89,7 +89,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         formFactory.formData.SubmitForm(currentInput);
 
-        Invoke(nameof(TriggerFactoryToGenerate), 1.5f);
+        Invoke(nameof(TriggerFactoryToGenerate), 2f);
 
     }
 
