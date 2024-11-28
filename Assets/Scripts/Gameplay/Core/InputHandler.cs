@@ -95,6 +95,13 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
     void TriggerFactoryToGenerate(){
 
+        // if remaining form is less than 0, do stop there
+        if (ScoreManager.remainingFormCount <= 0){
+            formFactory.DeleteActiveForm();
+            GameState.GameWin();
+            return;
+        }
+
         canSubmit = true;
 
         formFactory.GenerateForm();

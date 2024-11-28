@@ -1,21 +1,30 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static int correctGuessCount = 0;
     public static int wrongGuessCount = 0;
+    public static int remainingFormCount = 0;
+
+    [SerializeField] int formAmount;
 
     [Header("Other Components")]
     [SerializeField] PlayerData playerData;
     [SerializeField] TextMeshProUGUI correctScoreText;
     [SerializeField] TextMeshProUGUI wrongScoreText;
+    [SerializeField] TextMeshProUGUI remainFormText;
 
     void Start(){
 
         // reset static variables
         correctGuessCount = 0;
         wrongGuessCount = 0;
+        remainingFormCount = formAmount;
+
+        UpdateText();
+
     }
 
     public void ProgressScore(FormData.FormType form, InputHandler.InputType input){
@@ -33,9 +42,15 @@ public class ScoreManager : MonoBehaviour
             } else {
                 IncorrectGuess();
             }
+        
+        remainingFormCount--;
+        UpdateText();
+    }
 
+    void UpdateText(){
         correctScoreText.text = "Correct Guess = " + correctGuessCount;
         wrongScoreText.text = "Wrong Guess = " + wrongGuessCount;
+        remainFormText.text = "Remain Form = " + remainingFormCount;
     }
 
     void CorrectGuess(){

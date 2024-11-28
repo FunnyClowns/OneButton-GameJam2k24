@@ -34,7 +34,7 @@ public class FormFactory : MonoBehaviour
         var formRNG = Random.value;
 
         if (generatedForm != null){
-            Destroy(generatedForm);
+            DeleteActiveForm();
         }
 
         generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
@@ -50,6 +50,10 @@ public class FormFactory : MonoBehaviour
             GenerateCorrectForm();
         }
 
+    }
+
+    public void DeleteActiveForm(){
+        Destroy(generatedForm);
     }
 
     void GenerateIncorrectForm(){ 

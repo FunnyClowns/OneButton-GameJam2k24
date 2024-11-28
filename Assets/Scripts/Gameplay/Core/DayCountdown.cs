@@ -37,10 +37,10 @@ public class DayCountdown : MonoBehaviour, ISliderValue
         Debug.Log("DAY ENDED");
         StopCoroutine(TimerCountdown());
 
-        if (ScoreManager.correctGuessCount >= 5){
-            Debug.Log("WIN");
+        if (ScoreManager.remainingFormCount <= 0){
+            GameState.GameWin();
         } else {
-            Debug.Log("LOST");
+            GameState.GameLose();
         }
     }
 
