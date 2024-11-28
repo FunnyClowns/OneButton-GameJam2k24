@@ -24,11 +24,7 @@ public class PlayerData : MonoBehaviour
     void Death(){
         Debug.Log("Death");
 
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
+        GameState.GameLose();
     }
 
 

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
@@ -12,6 +13,10 @@ public class GameState : MonoBehaviour
     public static StateType currentState;
 
 
+    [Header("Other Components")]
+    [SerializeField] TextMeshProUGUI gameOverTMP;
+    static string gameOverMessage;
+
     void Start(){
         currentState = StateType.Going;
     }
@@ -22,6 +27,7 @@ public class GameState : MonoBehaviour
 
         currentState = StateType.Win;
 
+        gameOverMessage = "WIN\nyayyyyyy";
         Debug.Log("WIN");
     }
 
@@ -32,7 +38,19 @@ public class GameState : MonoBehaviour
 
         currentState = StateType.Lost;
 
+        gameOverMessage = "LOSE";
         Debug.Log("LOSE");
+    }
+
+    void Update(){
+        
+        if (currentState != StateType.Going)
+            Gameover();
+    }
+
+    void Gameover(){
+        gameOverTMP.enabled = true;
+        gameOverTMP.text = gameOverMessage;
     }
 
 }
