@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,14 +9,17 @@ public class FormData : MonoBehaviour
         Incorrect,
     }
 
-    [HideInInspector] public FormType currentFormType;
+    [HideInInspector] public FormType thisFormType;
+    [HideInInspector] public FormFactory.IncorrectFormVariation thisVariation;
+
+
 
     [Header("Form Sprites"), SerializeField]
     Sprite approvedStamp;
     [SerializeField] Sprite deniedStamp;
 
     [Header("Form Components")]
-    public TextMeshPro signatureRenderer;
+    public TextMeshPro signatureText;
     public SpriteRenderer companyWatermarkRenderer;
     public SpriteRenderer stampRenderer;
     public GameObject decisionStamp;
@@ -32,6 +36,9 @@ public class FormData : MonoBehaviour
             formAnimator.Play("Form In");
         }
 
+        if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature)
+            signatureText.text = GetRandomSignatureName();
+        
         VariateObjectTransform();
     }
 
@@ -79,5 +86,26 @@ public class FormData : MonoBehaviour
         target.localEulerAngles = new Vector3(0,0, Random.Range(-range, range));
 
         return;
+    }
+
+    string GetRandomSignatureName(){
+
+        string[] clientNames = {"Aaron", "Adam", "Adrian", "Albert", "Alexander", "Andrew", "Arthur", "Austin", 
+        "Benjamin", "Bernard", "Blake", "Bradley", "Brandon", "Brian", "Bruce", "Caleb", 
+        "Carl", "Charles", "Charlie", "Chris", "Christopher", "Colin", "Connor", "Craig", 
+        "Daniel", "Darren", "David", "Dennis", "Dominic", "Douglas", "Dylan", "Edward", 
+        "Elliot", "Elijah", "Elliott", "Emmanuel", "Eric", "Ethan", "Eugene", "Felix", 
+        "Francis", "Frederick", "Gabriel", "George", "Grant", "Gregory", "Harry", "Harvey", 
+        "Hector", "Henry", "Hugh", "Isaac", "Jack", "Jacob", "James", "Jason", "Jeffrey", 
+        "Jeremy", "Jerry", "Jesse", "John", "Jonathan", "Jordan", "Joseph", "Joshua", 
+        "Julian", "Kenneth", "Kevin", "Liam", "Louis", "Lucas", "Luke", "Mark", "Martin", 
+        "Matthew", "Michael", "Nathan", "Nicholas", "Oliver", "Oscar", "Patrick", "Paul", 
+        "Peter", "Philip", "Ray", "Richard", "Robert", "Samuel", "Simon", "Stephen", "Steve", 
+        "Thomas", "Timothy", "Toby", "Tony", "Victor", "Vincent", "William", "Zachary", "Zane",
+        "Kizons", "Kitty", "Pendrinho", "Riley", "Katie"};
+
+        var choosenName = clientNames[Random.Range(0, clientNames.Length - 1)];
+
+        return choosenName;
     }
 }

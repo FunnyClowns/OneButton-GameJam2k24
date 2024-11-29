@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -85,31 +86,36 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         Debug.Log("Complete input");
 
-        score.ProgressScore(formFactory.formData.currentFormType, currentInput);
+        score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
 
-        formFactory.formData.SubmitForm(currentInput);
+        formFactory.generatedFormData.SubmitForm(currentInput);
 
-        Invoke(nameof(TriggerFactoryToGenerate), 2f);
+        StartCoroutine(TriggerFactoryToGenerate());
 
     }
 
-    void TriggerFactoryToGenerate(){
+    IEnumerator TriggerFactoryToGenerate(){
+
+        yield return new WaitForSeconds(2f);
 
         // if remaining form is less than 0, do stop there
         if (ScoreManager.remainingFormCount <= 0){
             formFactory.DeleteActiveForm();
             GameState.GameWin();
-            return;
+            yield break;
         }
 
         // game is already over
         if (GameState.currentState != GameState.StateType.Going){
             formFactory.DeleteActiveForm();
-            return;
+            yield break;
         }
-        canSubmit = true;
 
         formFactory.GenerateForm();
+
+        yield return new WaitForSeconds(1.5f);
+
+        canSubmit = true;
     }
 
     void InverseInputType(){

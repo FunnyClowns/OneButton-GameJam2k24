@@ -273,7 +273,7 @@ MonoBehaviour:
   currentFormType: 0
   approvedStamp: {fileID: 21300000, guid: c24dcb656b656074ca586cf8b3f63a9a, type: 3}
   deniedStamp: {fileID: 21300000, guid: 621300a57ef693646a2a3b1ac67f9347, type: 3}
-  signatureRenderer: {fileID: 5211977436644353286}
+  signatureText: {fileID: 5211977436644353286}
   companyWatermarkRenderer: {fileID: 444567690825311685}
   stampRenderer: {fileID: 7570315733602016782}
   decisionStamp: {fileID: 6747643425721243595}

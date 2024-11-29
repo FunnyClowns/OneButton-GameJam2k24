@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class FormFactory : MonoBehaviour
 {
 
-    enum IncorrectFormVariation{
+    public enum IncorrectFormVariation{
         MissingSignature,
         MissingCompanyWM,
         MissingStamp,
@@ -23,7 +23,7 @@ public class FormFactory : MonoBehaviour
     [Header("Other Components")]
     [SerializeField] GameObject formPrefab;
     GameObject generatedForm;
-    [HideInInspector] public FormData formData;
+    [HideInInspector] public FormData generatedFormData;
 
     void Awake(){
         GenerateForm();
@@ -38,8 +38,8 @@ public class FormFactory : MonoBehaviour
 
         generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
         
-        if (!generatedForm.TryGetComponent<FormData>(out formData)){
-            Debug.Log("Cant find formdata in prefab");
+        if (!generatedForm.TryGetComponent<FormData>(out generatedFormData)){
+            Debug.Log("Cant find generatedFormData in prefab");
             return;
         }
 
@@ -56,26 +56,27 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateIncorrectForm(){ 
-        formData.currentFormType = FormData.FormType.Incorrect;
+        generatedFormData.thisFormType = FormData.FormType.Incorrect;
 
         // generate random number of a enum length
         int rng = Random.Range(0, Enum.GetNames(typeof(IncorrectFormVariation)).Length);
 
         // chooses variation based on rng
         IncorrectFormVariation choosenFormVariation = (IncorrectFormVariation)rng;
+        generatedFormData.thisVariation = choosenFormVariation;
 
         switch(choosenFormVariation){
 
             case IncorrectFormVariation.MissingSignature :
-                formData.signatureRenderer.color = Color.red;
+                generatedFormData.signatureText.text = " ";
                 break;
 
             case IncorrectFormVariation.MissingCompanyWM :
-                formData.companyWatermarkRenderer.color = Color.red;
+                generatedFormData.companyWatermarkRenderer.color = Color.red;
                 break;
 
             case IncorrectFormVariation.MissingStamp :
-                formData.stampRenderer.sprite = wrongStamp[Random.Range(0, wrongStamp.Count)];
+                generatedFormData.stampRenderer.sprite = wrongStamp[Random.Range(0, wrongStamp.Count)];
                 break;
 
             default :
@@ -89,7 +90,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateCorrectForm(){
-        formData.currentFormType = FormData.FormType.Correct;
+        generatedFormData.thisFormType = FormData.FormType.Correct;
 
         Debug.Log("Correct Form");
     }
