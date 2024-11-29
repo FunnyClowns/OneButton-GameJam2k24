@@ -16,7 +16,6 @@ public class FormData : MonoBehaviour
     [Header("Form Components")]
     public SpriteRenderer signatureRenderer;
     public SpriteRenderer companyWatermarkRenderer;
-    public SpriteRenderer formText;
     public SpriteRenderer stampRenderer;
     public GameObject decisionStamp;
     Animator formAnimator;

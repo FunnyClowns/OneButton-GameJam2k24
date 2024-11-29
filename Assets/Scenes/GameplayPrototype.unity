@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dbecda2d7ad78488e1c4c10f847c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverTMP: {fileID: 0}
+  gameOverTMP: {fileID: 1516258972}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516258971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2727,6 +2727,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1373695763589573757, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b18d7d0e86bccc34297afb71117343d6, type: 3}
     - target: {fileID: 3008760092404069407, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.43
@@ -2773,10 +2777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5680979066311328138, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7438853794613658179, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}

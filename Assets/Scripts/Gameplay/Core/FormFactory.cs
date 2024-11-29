@@ -9,7 +9,6 @@ public class FormFactory : MonoBehaviour
     enum IncorrectFormVariation{
         MissingSignature,
         MissingCompanyWM,
-        Forged,
         MissingStamp,
     }
 
@@ -73,10 +72,6 @@ public class FormFactory : MonoBehaviour
 
             case IncorrectFormVariation.MissingCompanyWM :
                 formData.companyWatermarkRenderer.color = Color.red;
-                break;
-            
-            case IncorrectFormVariation.Forged :
-                formData.formText.color = Color.red;
                 break;
 
             case IncorrectFormVariation.MissingStamp :
