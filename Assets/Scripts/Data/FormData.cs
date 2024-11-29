@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class FormData : MonoBehaviour
@@ -14,7 +15,7 @@ public class FormData : MonoBehaviour
     [SerializeField] Sprite deniedStamp;
 
     [Header("Form Components")]
-    public SpriteRenderer signatureRenderer;
+    public TextMeshPro signatureRenderer;
     public SpriteRenderer companyWatermarkRenderer;
     public SpriteRenderer stampRenderer;
     public GameObject decisionStamp;
