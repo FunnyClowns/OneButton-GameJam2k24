@@ -43,13 +43,13 @@ public class GameState : MonoBehaviour
     }
 
     void Update(){
-        
         if (currentState != StateType.Going)
             Gameover();
     }
 
     void Gameover(){
-        gameOverTMP.enabled = true;
+        Debug.Log("Game over");
+        gameOverTMP.gameObject.SetActive(true);
         gameOverTMP.text = gameOverMessage;
     }
 
