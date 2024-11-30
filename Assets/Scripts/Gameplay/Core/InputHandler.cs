@@ -7,21 +7,18 @@ using UnityEngine.InputSystem.Interactions;
 public class InputHandler : MonoBehaviour, ISliderValue
 {
 
-    // components
+    [Header("Other Components")]
     [SerializeField] InputAction input;
     [SerializeField] FormFactory formFactory;
     [SerializeField] ScoreManager score;
+    [SerializeField] SceneLoader sceneLoader;
 
     [SerializeField] SliderFiller acceptFiller;
     [SerializeField] SliderFiller denyFiller;
     [SerializeField] GameObject acceptSliderBG;
     [SerializeField] GameObject denySliderBG;    
 
-
-    SlowTapInteraction slowTap;
-
     
-
     public enum InputType{
         Accept,
         Deny,
@@ -44,30 +41,22 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         input.started += context => {
             if (context.interaction is SlowTapInteraction){
-                slowTap = context.interaction as SlowTapInteraction;
-                isHolding = true;
+                InputStartReceiver();
             }
         };
 
         input.performed += context => { 
             if (context.interaction is SlowTapInteraction){
-                
-                if (canSubmit){
-                    canSubmit = false;
-
-                    OnSlowTapComplete();
-                }
-                
-                isHolding = false;
+                InputPerformedReceiver();
             }
         };
 
         input.canceled += context => { 
-            if (context.interaction is SlowTapInteraction){
-                InverseInputType();
-                isHolding = false;
-            }
-        };
+                if (context.interaction is SlowTapInteraction){
+                    InputCancelledReceiver();
+                }
+            };
+
     }
 
     void OnDisable(){
@@ -80,6 +69,49 @@ public class InputHandler : MonoBehaviour, ISliderValue
         } else {
             holdingTime = 0;
         }
+    }
+
+    void InputStartReceiver(){
+
+         // set button to gameplay
+        if (GameState.currentState == GameState.StateType.Going){
+            isHolding = true;
+            Debug.Log("Gameplay");
+        }
+
+        if (GameState.currentState == GameState.StateType.Win){
+            sceneLoader.LoadNextScene();
+            Debug.Log("Next Scene");
+        }
+
+        if (GameState.currentState == GameState.StateType.Lost){
+            sceneLoader.ReloadScene();
+            Debug.Log("Reload Scene");
+        }
+    }
+
+    void InputPerformedReceiver(){
+
+         // set button to gameplay
+        if (GameState.currentState == GameState.StateType.Going){
+            if (canSubmit){
+                    canSubmit = false;
+
+                    OnSlowTapComplete();
+                }
+                
+                isHolding = false;
+        }
+    }
+
+    void InputCancelledReceiver(){
+
+         // set button to gameplays
+        if (GameState.currentState == GameState.StateType.Going){
+            InverseInputType();
+            isHolding = false;
+        }
+
     }
 
     void OnSlowTapComplete(){

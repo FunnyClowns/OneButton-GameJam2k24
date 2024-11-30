@@ -50,7 +50,7 @@ public class GameState : MonoBehaviour
     }
 
     void Gameover(){
-        Debug.Log("Game over");
+        // Debug.Log("Game over");
 
         ActivateGameOverScene();
     }
