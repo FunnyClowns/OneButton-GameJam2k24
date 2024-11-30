@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
@@ -12,9 +12,13 @@ public class GameState : MonoBehaviour
 
     public static StateType currentState;
 
+    [Header("Game Sprites")]
+    [SerializeField] Sprite WinSpriteScene;
+    [SerializeField] Sprite LostSpriteScene;
+
 
     [Header("Other Components")]
-    [SerializeField] TextMeshProUGUI gameOverTMP;
+    [SerializeField] Image gameOverRenderer;
     static string gameOverMessage;
 
     void Start(){
@@ -27,7 +31,6 @@ public class GameState : MonoBehaviour
 
         currentState = StateType.Win;
 
-        gameOverMessage = "WIN\nyayyyyyy";
         Debug.Log("WIN");
     }
 
@@ -38,7 +41,6 @@ public class GameState : MonoBehaviour
 
         currentState = StateType.Lost;
 
-        gameOverMessage = "LOSE";
         Debug.Log("LOSE");
     }
 
@@ -49,8 +51,19 @@ public class GameState : MonoBehaviour
 
     void Gameover(){
         Debug.Log("Game over");
-        gameOverTMP.gameObject.SetActive(true);
-        gameOverTMP.text = gameOverMessage;
+
+        ActivateGameOverScene();
+    }
+
+    void ActivateGameOverScene(){
+        
+        if (currentState == StateType.Win)
+            gameOverRenderer.sprite = WinSpriteScene;
+
+        if (currentState == StateType.Lost)
+            gameOverRenderer.sprite = LostSpriteScene;
+
+        gameOverRenderer.gameObject.SetActive(true);
     }
 
 }
