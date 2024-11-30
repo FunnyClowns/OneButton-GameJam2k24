@@ -68,7 +68,7 @@ public class FormData : MonoBehaviour
         RandomizeTransformRotation(stampRenderer.transform, 15f);
 
         // building photo
-        RandomizeTransformPosition(buildingPhotoRenderer.transform, 0f, 0.8f);
+        RandomizeTransformPosition(buildingPhotoRenderer.transform, 0f, 0.05f);
     }
 
     void RandomizeTransformPosition(Transform target, float xRange, float yRange){
