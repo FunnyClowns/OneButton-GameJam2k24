@@ -1576,10 +1576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74446b44efbec5741ab625e05a4939b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctStamp: {fileID: 21300000, guid: 6f879bcc101f7f341bd39af0c5fa5dc3, type: 3}
-  wrongStamp:
-  - {fileID: 21300000, guid: 61c84485d24eec44b965dfae84a6e388, type: 3}
-  - {fileID: 21300000, guid: ee809460aa89396498630806dadf2c27, type: 3}
+  correctStamp: {fileID: 21300000, guid: 9d2319425a101c94eb4520f95c689d5c, type: 3}
+  wrongStamp: {fileID: 21300000, guid: ee809460aa89396498630806dadf2c27, type: 3}
   correctBuildingPhoto:
   - {fileID: 168553506, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
   - {fileID: 1592576892, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
@@ -1589,6 +1587,10 @@ MonoBehaviour:
   - {fileID: -1410495933, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
   - {fileID: -386061575, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
   - {fileID: 588279559, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
+  correctStampColor:
+  - {r: 0.5254902, g: 0, b: 0.09019608, a: 1}
+  incorrectStampColor:
+  - {r: 0, g: 0, b: 0, a: 1}
   formStartPosition: {x: -0.43, y: -0.58}
   formPrefab: {fileID: 5680979066311328138, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
   generatedFormData: {fileID: 0}

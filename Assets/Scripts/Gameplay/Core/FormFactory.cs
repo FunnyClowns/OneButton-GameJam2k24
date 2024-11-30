@@ -9,14 +9,17 @@ public class FormFactory : MonoBehaviour
     public enum IncorrectFormVariation{
         MissingSignature,
         WrongBuildingPhoto,
-        MissingStamp,
+        WrongStampColor,
+        WrongStampShape,
     }
 
-    [Header("Form Sprites")]
+    [Header("Form Components")]
     [SerializeField] Sprite correctStamp;
-    [SerializeField] List<Sprite> wrongStamp;
+    [SerializeField] Sprite wrongStamp;
     [SerializeField] List<Sprite> correctBuildingPhoto;
     [SerializeField] List<Sprite> incorrectBuildingPhoto;
+    [SerializeField] List<Color> correctStampColor;
+    [SerializeField] List<Color> incorrectStampColor;
 
 
     [Header("Form Generation Data")]
@@ -46,7 +49,7 @@ public class FormFactory : MonoBehaviour
             return;
         }
 
-        if (formRNG > 0.5f){
+        if (formRNG > 0.4f){
             GenerateIncorrectForm();
         } else {
             GenerateCorrectForm();
@@ -68,6 +71,7 @@ public class FormFactory : MonoBehaviour
 
     void ChooseCorrectFormVariation(){
         generatedFormData.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
+        generatedFormData.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
     }
 
     void GenerateIncorrectForm(){ 
@@ -96,8 +100,12 @@ public class FormFactory : MonoBehaviour
                     generatedFormData.buildingPhotoRenderer.sprite = incorrectBuildingPhoto[Random.Range(0, incorrectBuildingPhoto.Count)];
                     break;
 
-                case IncorrectFormVariation.MissingStamp :
-                    generatedFormData.stampRenderer.sprite = wrongStamp[Random.Range(0, wrongStamp.Count)];
+                case IncorrectFormVariation.WrongStampColor :
+                    generatedFormData.stampRenderer.color = incorrectStampColor[Random.Range(0, incorrectStampColor.Count)];
+                    break;
+
+                case IncorrectFormVariation.WrongStampShape :
+                    generatedFormData.stampRenderer.sprite = wrongStamp;
                     break;
 
                 default :
@@ -108,6 +116,14 @@ public class FormFactory : MonoBehaviour
             // checks if variation is not wrong building, then do create correct photo
             if (choosenFormVariation != IncorrectFormVariation.WrongBuildingPhoto)
                 generatedFormData.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
+
+            if (choosenFormVariation != IncorrectFormVariation.WrongStampColor){
+                generatedFormData.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
+            }
+
+            if (choosenFormVariation != IncorrectFormVariation.WrongStampShape){
+                generatedFormData.stampRenderer.sprite = correctStamp;
+            }
 
             Debug.Log("Incorrect Form");
 
