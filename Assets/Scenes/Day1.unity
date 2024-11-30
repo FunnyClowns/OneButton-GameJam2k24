@@ -1696,6 +1696,10 @@ MonoBehaviour:
   correctStampColor:
   - {r: 0.5254902, g: 0, b: 0.09019608, a: 1}
   incorrectStampColor:
+  - {r: 0.25882354, g: 0.02745098, b: 0.023529412, a: 1}
+  - {r: 0.19607843, g: 0, b: 0.5882353, a: 1}
+  - {r: 0.011764706, g: 0.1882353, b: 0.40784314, a: 1}
+  - {r: 0.85490197, g: 0.4, b: 0.11372549, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   formStartPosition: {x: -0.43, y: -0.58}
   formPrefab: {fileID: 5680979066311328138, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
@@ -2715,6 +2719,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb44f723ed686f047bb4af92d32bbbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  approveHand: {fileID: 21300000, guid: 10608316e1c1d244a8f150e00fc96c8f, type: 3}
+  denyHand: {fileID: 21300000, guid: f4f0441b75dff5f4ea7abe812b85050f, type: 3}
+  handRenderer: {fileID: 171439519}
+  handAnimator: {fileID: 171439520}
   input:
     m_Name: Input
     m_Type: 1
@@ -2739,7 +2747,6 @@ MonoBehaviour:
   denyFiller: {fileID: 1446104294}
   acceptSliderBG: {fileID: 771149235}
   denySliderBG: {fileID: 1162154514}
-  handAnimator: {fileID: 171439520}
 --- !u!114 &1811570553
 MonoBehaviour:
   m_ObjectHideFlags: 0
