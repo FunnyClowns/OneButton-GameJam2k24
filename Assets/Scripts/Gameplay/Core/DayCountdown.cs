@@ -22,7 +22,7 @@ public class DayCountdown : MonoBehaviour, ISliderValue
 
             gameTimerCount++;
 
-            Debug.Log("Day Timer : " + gameTimerCount);
+            // Debug.Log("Day Timer : " + gameTimerCount);
 
             if (gameTimerCount >= gameTime){
                 gameRunning = false;

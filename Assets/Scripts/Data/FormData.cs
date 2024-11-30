@@ -20,7 +20,7 @@ public class FormData : MonoBehaviour
 
     [Header("Form Components")]
     public TextMeshPro signatureText;
-    public SpriteRenderer companyWatermarkRenderer;
+    public SpriteRenderer buildingPhotoRenderer;
     public SpriteRenderer stampRenderer;
     public GameObject decisionStamp;
     Animator formAnimator;
@@ -36,8 +36,9 @@ public class FormData : MonoBehaviour
             formAnimator.Play("Form In");
         }
 
-        if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature)
+        if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature){
             signatureText.text = GetRandomSignatureName();
+        }
         
         VariateObjectTransform();
     }
@@ -61,7 +62,7 @@ public class FormData : MonoBehaviour
     }
 
     void VariateObjectTransform(){
-
+        
         RandomizeTransformPosition(stampRenderer.transform, 0.05f, 0.05f);
         RandomizeTransformScale(stampRenderer.transform, 1.1f);
         RandomizeTransformRotation(stampRenderer.transform, 15f);
