@@ -7,6 +7,14 @@ using UnityEngine.InputSystem.Interactions;
 public class InputHandler : MonoBehaviour, ISliderValue
 {
 
+    [Header("Player Sprites")]
+    [SerializeField] Sprite approveHand;
+    [SerializeField] Sprite denyHand;
+
+    [Header("Player Components")]
+    [SerializeField] SpriteRenderer handRenderer;
+    [SerializeField] Animator handAnimator;
+
     [Header("Other Components")]
     [SerializeField] InputAction input;
     [SerializeField] FormFactory formFactory;
@@ -16,7 +24,9 @@ public class InputHandler : MonoBehaviour, ISliderValue
     [SerializeField] SliderFiller acceptFiller;
     [SerializeField] SliderFiller denyFiller;
     [SerializeField] GameObject acceptSliderBG;
-    [SerializeField] GameObject denySliderBG;    
+    [SerializeField] GameObject denySliderBG;   
+    
+    
 
     
     public enum InputType{
@@ -121,6 +131,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
         score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
 
         formFactory.generatedFormData.SubmitForm(currentInput);
+        handAnimator.Play("Hand_StartStamp");
 
         StartCoroutine(TriggerFactoryToGenerate());
 
@@ -129,6 +140,8 @@ public class InputHandler : MonoBehaviour, ISliderValue
     IEnumerator TriggerFactoryToGenerate(){
 
         yield return new WaitForSeconds(2f);
+
+        handAnimator.Play("Hand_Idle");
 
         // if remaining form is less than 0, do stop there
         if (ScoreManager.remainingFormCount <= 0){
@@ -157,12 +170,12 @@ public class InputHandler : MonoBehaviour, ISliderValue
         if (currentInput == InputType.Accept){
             Debug.Log("Input deny");
             currentInput = InputType.Deny;
+            handRenderer.sprite = denyHand;
 
-            
-            
         } else {
             Debug.Log("input accept");
-            currentInput = InputType.Accept;  
+            currentInput = InputType.Accept;
+            handRenderer.sprite = approveHand;
         }
 
         UpdateInputState();
