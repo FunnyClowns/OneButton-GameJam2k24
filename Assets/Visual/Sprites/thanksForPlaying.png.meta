@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e24eb47c79260fd48a771a7332973fed
+guid: b3391948bcc3772479c29b274b39a603
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,91 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: buttons-sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2
-        width: 1160
-        height: 1160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eaefa66aba8ec8e4092dcdd1acdf0c52
-      internalID: -1504721153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons-sheet_1
-      rect:
-        serializedVersion: 2
-        x: 1160
-        y: 2
-        width: 1160
-        height: 1160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bcb31e89c09be6b43b2e7b15236bff68
-      internalID: 1978864374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons-sheet_2
-      rect:
-        serializedVersion: 2
-        x: 2320
-        y: 2
-        width: 1160
-        height: 1160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdd58a2eee1c8e44c926bb2ab24d0380
-      internalID: -1084915291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 3480
-        y: 2
-        width: 1160
-        height: 1160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2892d4c8366e3647a37fbf30c96b0a2
-      internalID: -285029839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -216,11 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      buttons-sheet_0: -1504721153
-      buttons-sheet_1: 1978864374
-      buttons-sheet_2: -1084915291
-      buttons-sheet_3: -285029839
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e24eb47c79260fd48a771a7332973fed
+guid: 88f63f5d780ad8a4ca5b2051c23c8927
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: buttons-sheet_0
+      name: days-sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 1160
-        height: 1160
+        y: 0
+        width: 960
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaefa66aba8ec8e4092dcdd1acdf0c52
-      internalID: -1504721153
+      spriteID: 8f57a96b05e405b43a6de74779aaaee4
+      internalID: 1486266392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buttons-sheet_1
+      name: days-sheet_1
       rect:
         serializedVersion: 2
-        x: 1160
-        y: 2
-        width: 1160
-        height: 1160
+        x: 960
+        y: 0
+        width: 960
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcb31e89c09be6b43b2e7b15236bff68
-      internalID: 1978864374
+      spriteID: 0c0cc48b42d09834587cf80490e93ada
+      internalID: -1421067692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buttons-sheet_2
+      name: days-sheet_2
       rect:
         serializedVersion: 2
-        x: 2320
-        y: 2
-        width: 1160
-        height: 1160
+        x: 1920
+        y: 0
+        width: 960
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,29 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdd58a2eee1c8e44c926bb2ab24d0380
-      internalID: -1084915291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 3480
-        y: 2
-        width: 1160
-        height: 1160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2892d4c8366e3647a37fbf30c96b0a2
-      internalID: -285029839
+      spriteID: 1553c47d42379f84287ef6eb12a72a1a
+      internalID: 1681290650
       vertices: []
       indices: 
       edges: []
@@ -217,10 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      buttons-sheet_0: -1504721153
-      buttons-sheet_1: 1978864374
-      buttons-sheet_2: -1084915291
-      buttons-sheet_3: -285029839
+      days-sheet_0: 1486266392
+      days-sheet_1: -1421067692
+      days-sheet_2: 1681290650
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
