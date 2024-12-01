@@ -12,8 +12,6 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Other Components")]
     [SerializeField] PlayerData playerData;
-    [SerializeField] TextMeshProUGUI correctScoreText;
-    [SerializeField] TextMeshProUGUI wrongScoreText;
     [SerializeField] TextMeshProUGUI remainFormText;
 
     void Start(){
@@ -48,9 +46,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     void UpdateText(){
-        correctScoreText.text = "Correct Guess = " + correctGuessCount;
-        wrongScoreText.text = "Wrong Guess = " + wrongGuessCount;
-        remainFormText.text = "Remain Form = " + remainingFormCount;
+        remainFormText.text = "Forms Left = " + remainingFormCount;
     }
 
     void CorrectGuess(){

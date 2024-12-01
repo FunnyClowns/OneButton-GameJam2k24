@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,13 +15,13 @@ public class GameState : MonoBehaviour
     public static StateType currentState;
 
     [Header("Game Sprites")]
-    [SerializeField] Sprite WinSpriteScene;
-    [SerializeField] Sprite LostSpriteScene;
+    [SerializeField] Sprite WinSpriteScreen;
+    [SerializeField] Sprite LostSpriteScreen;
 
 
     [Header("Other Components")]
     [SerializeField] Image gameOverRenderer;
-    static string gameOverMessage;
+    [SerializeField] TextMeshProUGUI continueText;
 
     void Start(){
         currentState = StateType.Going;
@@ -52,18 +54,22 @@ public class GameState : MonoBehaviour
     void Gameover(){
         // Debug.Log("Game over");
 
-        ActivateGameOverScene();
+        StartCoroutine(ActivateGameOverScreen());
     }
 
-    void ActivateGameOverScene(){
+    IEnumerator ActivateGameOverScreen(){
         
         if (currentState == StateType.Win)
-            gameOverRenderer.sprite = WinSpriteScene;
+            gameOverRenderer.sprite = WinSpriteScreen;
 
         if (currentState == StateType.Lost)
-            gameOverRenderer.sprite = LostSpriteScene;
+            gameOverRenderer.sprite = LostSpriteScreen;
 
         gameOverRenderer.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
+
+        continueText.gameObject.SetActive(true);
     }
 
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a370173729ba9ad498c93ad3e965de79
+guid: 98593579d3c96f943aae27a5e19c216c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Arty Signature
+  - Abrakadaboom
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
