@@ -118,7 +118,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bossDialogue.ShowDialogueManual("We got the company stamp. If it’s missing or in any colour other than (COLOUR), it’s incorrect.");
+        bossDialogue.ShowDialogueManual("We got the company stamp. If it’s missing or in any colour other than BRIGHT RED, it’s incorrect.");
         bossDialogue.StartYapping();
 
         yield return new WaitForSeconds(5f);
