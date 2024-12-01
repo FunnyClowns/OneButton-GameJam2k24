@@ -24,19 +24,23 @@ public class FormFactory : MonoBehaviour
 
     [Header("Form Generation Data")]
     [SerializeField] Vector2 formStartPosition;
+    GameObject generatedForm;
 
     
     [Header("Other Components")]
     [SerializeField] GameObject formPrefab;
-    GameObject generatedForm;
+    [SerializeField] SoundController sound;
+   
     [HideInInspector] public FormData generatedFormData;
 
-    void Awake(){
+    void Start(){
         GenerateForm();
     }
 
     public void GenerateForm(){
         var formRNG = Random.value;
+
+        PlayGeneratingSound();
 
         if (generatedForm != null){
             DeleteActiveForm();
@@ -55,6 +59,10 @@ public class FormFactory : MonoBehaviour
             GenerateCorrectForm();
         }
 
+    }
+
+    void PlayGeneratingSound(){
+        sound.PlaySoundOnce(3);
     }
 
     public void DeleteActiveForm(){

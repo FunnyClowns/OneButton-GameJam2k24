@@ -20,6 +20,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
     [SerializeField] FormFactory formFactory;
     [SerializeField] ScoreManager score;
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] SoundController sound;
 
     [SerializeField] SliderFiller acceptFiller;
     [SerializeField] SliderFiller denyFiller;
@@ -130,11 +131,21 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
 
+        PlayStampSound();
+
         formFactory.generatedFormData.SubmitForm(currentInput);
         handAnimator.Play("Hand_StartStamp");
 
         StartCoroutine(TriggerFactoryToGenerate());
 
+    }
+
+    void PlayStampSound(){
+        if (currentInput == InputType.Accept)
+            sound.PlaySoundOnce(1);
+        
+        else if (currentInput == InputType.Deny)
+            sound.PlaySoundOnce(2);
     }
 
     IEnumerator TriggerFactoryToGenerate(){
