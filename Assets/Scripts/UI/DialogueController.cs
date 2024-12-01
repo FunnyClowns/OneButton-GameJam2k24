@@ -9,7 +9,9 @@ public class DialogueController : MonoBehaviour
     [SerializeField] string inAnimationName;
     [SerializeField] string outAnimationName;
     [SerializeField] string[] Messages;
-    
+
+    bool isPlaying = false;
+
 
     [Header("Other Components")]
     [SerializeField] SoundController sound;
@@ -19,10 +21,13 @@ public class DialogueController : MonoBehaviour
     }
 
     public void StartDialogue(){
-        StartCoroutine(DialogueCoroutine());
+        if (!isPlaying)
+            StartCoroutine(DialogueCoroutine());
     }
 
     IEnumerator DialogueCoroutine(){
+        isPlaying = true;
+
         dialogueAnimator.Play(inAnimationName);
         dialogueTMP.text = Messages[Random.Range(0, Messages.Length)];
         sound.PlaySoundOnceOverload(3, 0.2f);
@@ -31,5 +36,7 @@ public class DialogueController : MonoBehaviour
 
         dialogueAnimator.Play(outAnimationName);
         sound.StopSound(3);
+
+        isPlaying = false;
     }
  }

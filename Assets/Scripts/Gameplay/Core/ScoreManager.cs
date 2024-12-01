@@ -58,7 +58,9 @@ public class ScoreManager : MonoBehaviour
     void IncorrectGuess(){
         wrongGuessCount++;
 
-        bossDialogue.StartDialogue();
+        if (wrongGuessCount < 3)
+            bossDialogue.StartDialogue();
+            
         playerData.ChangeLiveAmount(-1);
 
     }
