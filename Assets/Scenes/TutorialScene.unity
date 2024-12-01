@@ -1113,6 +1113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164783344}
   - component: {fileID: 1164783345}
+  - component: {fileID: 1164783346}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -1150,6 +1151,19 @@ MonoBehaviour:
   waitingForInput: 0
   bossDialogue: {fileID: 696097793}
   formData: {fileID: 1157531880}
+--- !u!114 &1164783346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164783343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1ebb5115a6e1b4dbb9f98319e54caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Day1
 --- !u!1 &1191830020
 GameObject:
   m_ObjectHideFlags: 0

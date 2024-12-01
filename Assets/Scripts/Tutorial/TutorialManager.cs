@@ -5,6 +5,7 @@ public class TutorialManager : MonoBehaviour
 {   
 
     [HideInInspector] public bool waitingForInput = false;
+    SceneLoader sceneLoader;
 
     [Header("Other Components")]
     [SerializeField] DialogueController bossDialogue;
@@ -13,6 +14,8 @@ public class TutorialManager : MonoBehaviour
 
     void Start(){
         StartCoroutine(TutorialSequence());
+        
+        sceneLoader = GetComponent<SceneLoader>();
     }
 
     IEnumerator TutorialSequence(){
@@ -164,9 +167,6 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
 
-        bossDialogue.ShowDialogueManual(" ");
-        bossDialogue.StopYapping();
-
-        yield return new WaitForSeconds(1f);
+        sceneLoader.LoadNextScene();
     }
 }
