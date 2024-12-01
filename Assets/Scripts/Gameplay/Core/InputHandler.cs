@@ -87,17 +87,14 @@ public class InputHandler : MonoBehaviour, ISliderValue
          // set button to gameplay
         if (GameState.currentState == GameState.StateType.Going){
             isHolding = true;
-            Debug.Log("Gameplay");
         }
 
         if (GameState.currentState == GameState.StateType.Win){
             sceneLoader.LoadNextScene();
-            Debug.Log("Next Scene");
         }
 
         if (GameState.currentState == GameState.StateType.Lost){
             sceneLoader.ReloadScene();
-            Debug.Log("Reload Scene");
         }
     }
 
@@ -127,7 +124,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
     void OnSlowTapComplete(){
 
-        Debug.Log("Complete input");
+        // Debug.Log("Complete input");
 
         score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
 
