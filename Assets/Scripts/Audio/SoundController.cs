@@ -16,11 +16,17 @@ public class SoundController : MonoBehaviour
         SoundAudioSources[index].PlayOneShotSoundManaged(SoundAudioSources[index].clip, soundVol);
     }
 
+    public void PlaySoundOnceOverload(int index, float volume){
+        SoundAudioSources[index].PlayOneShotSoundManaged(SoundAudioSources[index].clip, volume);
+    }
+
     public void PlaySoundLoop(int index){
         SoundAudioSources[index].PlayLoopingSoundManaged(soundLoopVol, 1.0f);
     }
 
-
+    public void StopSound(int index){
+        SoundAudioSources[index].Stop();
+    }
 
     public void PlayMusic(int index) {
         MusicAudioSources[index].PlayLoopingMusicManaged(musicVol, 1.0f, true);

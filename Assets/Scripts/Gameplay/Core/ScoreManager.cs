@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     [Header("Other Components")]
     [SerializeField] PlayerData playerData;
     [SerializeField] TextMeshProUGUI remainFormText;
+    [SerializeField] DialogueController bossDialogue;
 
     void Start(){
 
@@ -57,6 +58,7 @@ public class ScoreManager : MonoBehaviour
     void IncorrectGuess(){
         wrongGuessCount++;
 
+        bossDialogue.StartDialogue();
         playerData.ChangeLiveAmount(-1);
 
     }
