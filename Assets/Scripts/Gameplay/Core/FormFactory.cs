@@ -40,8 +40,6 @@ public class FormFactory : MonoBehaviour
     public void GenerateForm(){
         var formRNG = Random.value;
 
-        PlayGeneratingSound();
-
         if (generatedForm != null){
             DeleteActiveForm();
         }
@@ -60,11 +58,6 @@ public class FormFactory : MonoBehaviour
         }
 
     }
-
-    void PlayGeneratingSound(){
-        sound.PlaySoundOnce(3);
-    }
-
     public void DeleteActiveForm(){
         Destroy(generatedForm);
     }
