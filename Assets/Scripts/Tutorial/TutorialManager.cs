@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Other Components")]
     [SerializeField] DialogueController bossDialogue;
     public FormData formData;
+    [SerializeField] TextMeshProUGUI tipsTMP;
     
 
     void Start(){
@@ -108,7 +110,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bossDialogue.ShowDialogueManual("If the photo has a picture of anything other than a dome, if ain’t for us. This is obviously a dome, so we’re all good here!");
+        bossDialogue.ShowDialogueManual("If the photo has a picture of anything other than a dome, it ain’t for us. This is obviously a dome, so we’re all good here!");
         bossDialogue.StartYapping();
 
         yield return new WaitForSeconds(8f);
@@ -145,6 +147,8 @@ public class TutorialManager : MonoBehaviour
 
         bossDialogue.StopYapping();
 
+        tipsTMP.gameObject.SetActive(true);
+        
         waitingForInput = true;
         while(!formData.formSubmitted){
             yield return null;
@@ -165,7 +169,10 @@ public class TutorialManager : MonoBehaviour
         bossDialogue.ShowDialogueManual("ITS TIME!!");
         bossDialogue.StartYapping();
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
+
+        bossDialogue.StopYapping();
+        yield return new WaitForSeconds(2f);
 
         sceneLoader.LoadNextScene();
     }
