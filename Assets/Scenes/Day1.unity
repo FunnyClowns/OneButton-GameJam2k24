@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &54702037 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7336294357868069049, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
-  m_PrefabInstance: {fileID: 1825144605994414283}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &87395766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,22 +2319,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1823954457580164384, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6213365947102004801, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
-      propertyPath: SoundAudioSources.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6213365947102004801, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
-      propertyPath: SoundAudioSources.Array.data[3]
-      value: 
-      objectReference: {fileID: 54702037}
-    - target: {fileID: 7336294357868069049, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 34e58ae6e78811b4f874b89feb3877de, type: 3}
-    - target: {fileID: 7336294357868069049, guid: 53b9823a1a26d6243aeca26861773bcf, type: 3}
-      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
