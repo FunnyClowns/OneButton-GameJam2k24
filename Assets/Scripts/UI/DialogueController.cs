@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI dialogueTMP;
-    Animator dialogueAnimator;
+    
+    enum DialogueType{
+        LocalControlled,
+        PublicControlled,    
+    }
+
+    [Header("Adjustment")]
+    
+    [SerializeField] DialogueType thisDialogueType;
     [SerializeField] string inAnimationName;
     [SerializeField] string outAnimationName;
     [SerializeField] string[] Messages;
@@ -14,6 +21,8 @@ public class DialogueController : MonoBehaviour
 
 
     [Header("Other Components")]
+    [SerializeField] TextMeshProUGUI dialogueTMP;
+    Animator dialogueAnimator;
     [SerializeField] SoundController sound;
 
     void Awake(){
@@ -22,21 +31,43 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogue(){
         if (!isPlaying)
-            StartCoroutine(DialogueCoroutine());
+            StartCoroutine(RandomDialogueCoroutine());
     }
 
-    IEnumerator DialogueCoroutine(){
+    IEnumerator RandomDialogueCoroutine(){
         isPlaying = true;
 
-        dialogueAnimator.Play(inAnimationName);
+        PlayInAnimation();
+        StartYapping();
+        
         dialogueTMP.text = Messages[Random.Range(0, Messages.Length)];
-        sound.PlaySoundOnceOverload(3, 0.2f);
 
         yield return new WaitForSeconds(5.0f);
 
-        dialogueAnimator.Play(outAnimationName);
-        sound.StopSound(3);
+        PlayOutAnimation();
+        StopYapping();
+        
 
         isPlaying = false;
+    }
+
+    public void ShowDialogueManual(string message){
+        dialogueTMP.text = message;
+    }
+
+    public void PlayInAnimation(){
+        dialogueAnimator.Play(inAnimationName);
+    }
+
+    public void PlayOutAnimation(){
+        dialogueAnimator.Play(outAnimationName);
+    }
+
+    public void StartYapping(){
+        sound.PlaySoundOnceOverload(3, 0.2f);
+    }
+
+    public void StopYapping(){
+        sound.StopSound(3);
     }
  }

@@ -3,6 +3,11 @@ using DigitalRuby.SoundManagerNamespace;
 
 public class SoundController : MonoBehaviour
 {
+
+    [Header("Adjustment")]
+    [SerializeField] bool shouldPlayMusic;
+    [SerializeField] bool shouldPlayAmbience;
+
     [Header("Sources")]
     [SerializeField] AudioSource[] SoundAudioSources;
     [SerializeField] AudioSource[] MusicAudioSources;
@@ -33,7 +38,10 @@ public class SoundController : MonoBehaviour
     }
 
     void Start(){
-        PlayMusic(0);
-        PlaySoundLoop(0);
+        if (shouldPlayMusic)
+            PlayMusic(0);
+
+        if (shouldPlayAmbience)   
+            PlaySoundLoop(0);
     }
 }

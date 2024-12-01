@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class InputHandler : MonoBehaviour, ISliderValue
 {
+
+    [SerializeField] bool isTutorial = false;
 
     [Header("Player Sprites")]
     [SerializeField] Sprite approveHand;
@@ -102,7 +103,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
          // set button to gameplay
         if (GameState.currentState == GameState.StateType.Going){
-            if (canSubmit){
+            if (canSubmit || isTutorial){
                     canSubmit = false;
 
                     OnSlowTapComplete();
@@ -126,15 +127,24 @@ public class InputHandler : MonoBehaviour, ISliderValue
 
         // Debug.Log("Complete input");
 
-        score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
-
         PlayStampSound();
 
-        formFactory.generatedFormData.SubmitForm(currentInput);
+        StartCoroutine(PlayHandAnimation());
+
+        if (!isTutorial){
+            score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
+            formFactory.generatedFormData.SubmitForm(currentInput);
+            StartCoroutine(TriggerFactoryToGenerate());
+        }
+
+    }
+
+    IEnumerator PlayHandAnimation(){
         handAnimator.Play("Hand_StartStamp");
 
-        StartCoroutine(TriggerFactoryToGenerate());
+        yield return new WaitForSeconds(2f);
 
+        handAnimator.Play("Hand_Idle");
     }
 
     void PlayStampSound(){
@@ -148,8 +158,6 @@ public class InputHandler : MonoBehaviour, ISliderValue
     IEnumerator TriggerFactoryToGenerate(){
 
         yield return new WaitForSeconds(2f);
-
-        handAnimator.Play("Hand_Idle");
 
         // if remaining form is less than 0, do stop there
         if (ScoreManager.remainingFormCount <= 0){
