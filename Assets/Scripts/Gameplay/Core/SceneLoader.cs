@@ -1,12 +1,20 @@
+using System.Collections;
+using DigitalRuby.SoundManagerNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
     
-    string thisSceneName;
+    [Header("Setting")]
     [SerializeField] string nextSceneName;
+    string thisSceneName;
 
+    [Header("Other Sources")]
+    [SerializeField] Sprite nextDaySprite;
+    [SerializeField] Image dayScreen;
+    
     void Start(){
         thisSceneName = SceneManager.GetActiveScene().name;
     }
@@ -16,6 +24,18 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void LoadNextScene(){
+        StartCoroutine(LoadNextSceneCoroutine());
+    }
+
+    IEnumerator LoadNextSceneCoroutine(){
+        
+        SoundManager.StopAll();
+
+        dayScreen.sprite = nextDaySprite;
+        dayScreen.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
         SceneManager.LoadScene(nextSceneName);
     }
 }

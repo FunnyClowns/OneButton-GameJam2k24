@@ -34,7 +34,11 @@ public class SoundController : MonoBehaviour
     }
 
     public void PlayMusic(int index) {
-        MusicAudioSources[index].PlayLoopingMusicManaged(musicVol, 1.0f, true);
+        MusicAudioSources[index].PlayLoopingMusicManaged(musicVol, 1.0f, false);
+    }
+
+    public void PlayMusicOverload(int index, float vol) {
+        MusicAudioSources[index].PlayLoopingMusicManaged(vol, 1.0f, false);
     }
 
     void Start(){

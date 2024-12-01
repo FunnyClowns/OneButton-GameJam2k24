@@ -13,15 +13,18 @@ public class GameState : MonoBehaviour
     }
 
     public static StateType currentState;
+    bool isGameOver = false;
 
     [Header("Game Sprites")]
     [SerializeField] Sprite WinSpriteScreen;
     [SerializeField] Sprite LostSpriteScreen;
+    
 
 
     [Header("Other Components")]
     [SerializeField] Image gameOverRenderer;
     [SerializeField] TextMeshProUGUI continueText;
+    [SerializeField] SoundController sound;
 
     void Start(){
         currentState = StateType.Going;
@@ -47,8 +50,10 @@ public class GameState : MonoBehaviour
     }
 
     void Update(){
-        if (currentState != StateType.Going)
+        if (currentState != StateType.Going && !isGameOver){
+            isGameOver = true;
             Gameover();
+        }
     }
 
     void Gameover(){
@@ -59,12 +64,15 @@ public class GameState : MonoBehaviour
 
     IEnumerator ActivateGameOverScreen(){
         
-        if (currentState == StateType.Win)
+        if (currentState == StateType.Win){
             gameOverRenderer.sprite = WinSpriteScreen;
+            sound.PlayMusicOverload(1, 0.5f);
+        }
 
-        if (currentState == StateType.Lost)
+        if (currentState == StateType.Lost){
             gameOverRenderer.sprite = LostSpriteScreen;
-
+            sound.PlayMusicOverload(2, 0.5f);
+        }
         gameOverRenderer.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(5f);
