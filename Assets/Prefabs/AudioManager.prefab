@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 5664182550442480025}
   - {fileID: 6725556585336951354}
   - {fileID: 129812177797653880}
+  - {fileID: 7336294357868069049}
   MusicAudioSources:
   - {fileID: 7223996960904007921}
   musicVol: 0.15
@@ -228,7 +229,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c1962dc7a0a99ec4fa355bf23578fb93, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 34e58ae6e78811b4f874b89feb3877de, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
