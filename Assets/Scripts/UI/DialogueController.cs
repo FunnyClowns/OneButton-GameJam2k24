@@ -64,7 +64,7 @@ public class DialogueController : MonoBehaviour
     }
 
     public void StartYapping(){
-        sound.PlaySoundOnceOverload(3, 0.2f);
+        sound.PlaySoundOnceOverload(3, 0.5f);
     }
 
     public void StopYapping(){

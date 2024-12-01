@@ -22,6 +22,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
     [SerializeField] ScoreManager score;
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] SoundController sound;
+    [SerializeField] TutorialManager tutorialManager;
 
     [SerializeField] SliderFiller acceptFiller;
     [SerializeField] SliderFiller denyFiller;
@@ -135,6 +136,10 @@ public class InputHandler : MonoBehaviour, ISliderValue
             score.ProgressScore(formFactory.generatedFormData.thisFormType, currentInput);
             formFactory.generatedFormData.SubmitForm(currentInput);
             StartCoroutine(TriggerFactoryToGenerate());
+        }
+
+        if (isTutorial && currentInput == InputType.Accept && tutorialManager.waitingForInput){
+            tutorialManager.formData.SubmitForm(InputType.Accept);
         }
 
     }

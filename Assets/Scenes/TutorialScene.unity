@@ -1147,6 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bd73965c9b2d2488b17d61376d759a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitingForInput: 0
   bossDialogue: {fileID: 696097793}
   formData: {fileID: 1157531880}
 --- !u!1 &1191830020
@@ -2000,6 +2001,10 @@ PrefabInstance:
       propertyPath: acceptSliderBG
       value: 
       objectReference: {fileID: 771149235}
+    - target: {fileID: 5838291564432283955, guid: 96771b9544b3138408f9516a5afdf7d7, type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 1164783345}
     - target: {fileID: 6638135173298234709, guid: 96771b9544b3138408f9516a5afdf7d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0884788
@@ -2053,6 +2058,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 444567690825311685, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1033587148, guid: a54d722e148161b4e9f150d9a14a123c, type: 3}
     - target: {fileID: 3008760092404069407, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.43
@@ -2107,7 +2116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5680979066311328138, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570315733602016782, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
       propertyPath: m_Color.g
@@ -2120,10 +2129,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7945738400685244671, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c53200c31c7d8e94f90a1d9dfab83782, type: 3}
 --- !u!1001 &6918253670807715339
 PrefabInstance:

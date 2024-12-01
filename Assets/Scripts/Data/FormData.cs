@@ -12,11 +12,14 @@ public class FormData : MonoBehaviour
     [HideInInspector] public FormType thisFormType;
     [HideInInspector] public FormFactory.IncorrectFormVariation thisVariation;
 
+    [HideInInspector] public bool formSubmitted;
+
 
 
     [Header("Form Sprites"), SerializeField]
     Sprite approvedStamp;
     [SerializeField] Sprite deniedStamp;
+
 
     [Header("Form Components")]
     public TextMeshPro signatureText;
@@ -44,6 +47,12 @@ public class FormData : MonoBehaviour
     }
 
     public void SubmitForm(InputHandler.InputType choice){
+
+        if (formSubmitted){
+            return;
+        }
+        formSubmitted = true;
+
         decisionStamp.SetActive(true);
 
         if (choice == InputHandler.InputType.Accept)
