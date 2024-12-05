@@ -6,6 +6,7 @@ public class HoldButtonReceiver : MonoBehaviour,IPointerDownHandler,IPointerUpHa
     float holdingTime;
     bool isPressed;
 
+    [SerializeField] bool isApproveButton;
     [SerializeField] InputHandler inputHandler;
 
     void Update() {
@@ -33,6 +34,7 @@ public class HoldButtonReceiver : MonoBehaviour,IPointerDownHandler,IPointerUpHa
     }
 
     void CompleteHold(){
+        inputHandler.UpdateInputType(isApproveButton);
         inputHandler.InputPerformedReceiver();
 
         Debug.Log("Completed hold");

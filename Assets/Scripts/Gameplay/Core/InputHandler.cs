@@ -61,6 +61,15 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public void UpdateInputType(bool isApprove){
+
+        if (isApprove)
+            currentInput = InputType.Accept;
+
+        else
+            currentInput = InputType.Deny;
+    }
+
     // void InputCancelledReceiver(){
 
     //      // set button to gameplays
