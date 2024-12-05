@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class InputHandler : MonoBehaviour, ISliderValue
+public class InputHandler : MonoBehaviour
 {
 
     [SerializeField] bool isTutorial = false;
@@ -12,22 +12,18 @@ public class InputHandler : MonoBehaviour, ISliderValue
     [SerializeField] Sprite approveHand;
     [SerializeField] Sprite denyHand;
 
+
     [Header("Player Components")]
     [SerializeField] SpriteRenderer handRenderer;
     [SerializeField] Animator handAnimator;
 
+
     [Header("Other Components")]
-    [SerializeField] InputAction input;
     [SerializeField] FormFactory formFactory;
     [SerializeField] ScoreManager score;
     [SerializeField] SceneLoader sceneLoader;
     [SerializeField] SoundController sound;
-    [SerializeField] TutorialManager tutorialManager;
-
-    [SerializeField] SliderFiller acceptFiller;
-    [SerializeField] SliderFiller denyFiller;
-    [SerializeField] GameObject acceptSliderBG;
-    [SerializeField] GameObject denySliderBG;   
+    [SerializeField] TutorialManager tutorialManager; 
     
     
 
@@ -37,9 +33,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
         Deny,
     }
 
-    bool isHolding;
     bool canSubmit;
-    float holdingTime;
 
     InputType currentInput = InputType.Accept;
 
@@ -49,58 +43,12 @@ public class InputHandler : MonoBehaviour, ISliderValue
         canSubmit = true;
     }
 
-    void OnEnable(){
-        input.Enable();
+    // void InputStartReceiver(){
 
-        input.started += context => {
-            if (context.interaction is SlowTapInteraction){
-                InputStartReceiver();
-            }
-        };
+        
+    // }
 
-        input.performed += context => { 
-            if (context.interaction is SlowTapInteraction){
-                InputPerformedReceiver();
-            }
-        };
-
-        input.canceled += context => { 
-                if (context.interaction is SlowTapInteraction){
-                    InputCancelledReceiver();
-                }
-            };
-
-    }
-
-    void OnDisable(){
-        input.Disable();
-    }
-
-    void Update(){
-        if (isHolding){
-            holdingTime += Time.deltaTime;
-        } else {
-            holdingTime = 0;
-        }
-    }
-
-    void InputStartReceiver(){
-
-         // set button to gameplay
-        if (GameState.currentState == GameState.StateType.Going){
-            isHolding = true;
-        }
-
-        if (GameState.currentState == GameState.StateType.Win){
-            sceneLoader.LoadNextScene();
-        }
-
-        if (GameState.currentState == GameState.StateType.Lost){
-            sceneLoader.ReloadScene();
-        }
-    }
-
-    void InputPerformedReceiver(){
+    public void InputPerformedReceiver(){
 
          // set button to gameplay
         if (GameState.currentState == GameState.StateType.Going){
@@ -110,19 +58,17 @@ public class InputHandler : MonoBehaviour, ISliderValue
                     OnSlowTapComplete();
                 }
                 
-                isHolding = false;
         }
     }
 
-    void InputCancelledReceiver(){
+    // void InputCancelledReceiver(){
 
-         // set button to gameplays
-        if (GameState.currentState == GameState.StateType.Going){
-            InverseInputType();
-            isHolding = false;
-        }
+    //      // set button to gameplays
+    //     if (GameState.currentState == GameState.StateType.Going){
+    //         // InverseInputType();
+    //     }
 
-    }
+    // }
 
     void OnSlowTapComplete(){
 
@@ -147,7 +93,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
     IEnumerator PlayHandAnimation(){
         handAnimator.Play("Hand_StartStamp");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.0f);
 
         handAnimator.Play("Hand_Idle");
     }
@@ -184,48 +130,44 @@ public class InputHandler : MonoBehaviour, ISliderValue
         canSubmit = true;
     }
 
-    void InverseInputType(){
+    // void InverseInputType(){
         
-        // inverse input type
+    //     // inverse input type
 
-        if (currentInput == InputType.Accept){
-            Debug.Log("Input deny");
-            currentInput = InputType.Deny;
-            handRenderer.sprite = denyHand;
+    //     if (currentInput == InputType.Accept){
+    //         Debug.Log("Input deny");
+    //         currentInput = InputType.Deny;
+    //         handRenderer.sprite = denyHand;
 
-        } else {
-            Debug.Log("input accept");
-            currentInput = InputType.Accept;
-            handRenderer.sprite = approveHand;
-        }
+    //     } else {
+    //         Debug.Log("input accept");
+    //         currentInput = InputType.Accept;
+    //         handRenderer.sprite = approveHand;
+    //     }
 
-        UpdateInputState();
-    }
+    //     UpdateInputState();
+    // }
 
     void UpdateInputState(){
 
-        if (currentInput == InputType.Accept){
-            acceptFiller.shouldUpdate = true;
-            denyFiller.shouldUpdate = false;
+        // if (currentInput == InputType.Accept){
+        //     acceptFiller.shouldUpdate = true;
+        //     denyFiller.shouldUpdate = false;
 
-            acceptSliderBG.SetActive(true);
-            denySliderBG.SetActive(false);
+        //     acceptSliderBG.SetActive(true);
+        //     denySliderBG.SetActive(false);
 
-            denyFiller.ResetSlider();
-        } 
+        //     denyFiller.ResetSlider();
+        // } 
 
-        else if (currentInput == InputType.Deny){
-            acceptFiller.shouldUpdate = false;
-            denyFiller.shouldUpdate = true;
+        // else if (currentInput == InputType.Deny){
+        //     acceptFiller.shouldUpdate = false;
+        //     denyFiller.shouldUpdate = true;
 
-            acceptSliderBG.SetActive(false);
-            denySliderBG.SetActive(true);
+        //     acceptSliderBG.SetActive(false);
+        //     denySliderBG.SetActive(true);
 
-            acceptFiller.ResetSlider();
-        }
-    }
-
-    public float GetSliderValue(){
-        return holdingTime;
+        //     acceptFiller.ResetSlider();
+        // }
     }
 }
