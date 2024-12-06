@@ -63,11 +63,14 @@ public class InputHandler : MonoBehaviour
 
     public void UpdateInputType(bool isApprove){
 
-        if (isApprove)
+        if (isApprove){
             currentInput = InputType.Accept;
-
-        else
+            handRenderer.sprite = approveHand;
+        }
+        else {
             currentInput = InputType.Deny;
+            handRenderer.sprite = denyHand;
+        }
     }
 
     // void InputCancelledReceiver(){
