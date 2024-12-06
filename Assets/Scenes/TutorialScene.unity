@@ -580,7 +580,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1921810889}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1259,6 +1259,11 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4575254818756176707, guid: e4637aa6f2f33fc48bd9a3dd6c62d436, type: 3}
   m_PrefabInstance: {fileID: 8839188501494280408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1921810889 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1392285964149646792, guid: a61fad959264f8c438aa43d65ce823bf, type: 3}
+  m_PrefabInstance: {fileID: 1167172273}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1960664656 stripped
 MonoBehaviour:
