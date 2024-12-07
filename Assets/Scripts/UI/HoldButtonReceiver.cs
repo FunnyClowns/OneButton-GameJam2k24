@@ -7,7 +7,11 @@ public class HoldButtonReceiver : MonoBehaviour,IPointerDownHandler,IPointerUpHa
     bool isPressed;
 
     [SerializeField] bool isApproveButton;
-    [SerializeField] InputHandler inputHandler;
+    InputHandler inputHandler;
+
+    void Awake(){
+        inputHandler = FindObjectOfType<InputHandler>();
+    }
 
     void Update() {
 

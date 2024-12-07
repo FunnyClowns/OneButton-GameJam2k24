@@ -31,25 +31,26 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogue(){
         if (!isPlaying)
-            StartCoroutine(RandomDialogueCoroutine());
+            RandomDialogue();
     }
 
-    IEnumerator RandomDialogueCoroutine(){
+    public void StopDialogue(){
+        PlayOutAnimation();
+        StopYapping();
+        
+        isPlaying = false;
+    }
+
+    void RandomDialogue(){
         isPlaying = true;
 
         PlayInAnimation();
         StartYapping();
         
         dialogueTMP.text = Messages[Random.Range(0, Messages.Length)];
-
-        yield return new WaitForSeconds(5.0f);
-
-        PlayOutAnimation();
-        StopYapping();
-        
-
-        isPlaying = false;
     }
+
+
 
     public void ShowDialogueManual(string message){
         dialogueTMP.text = message;

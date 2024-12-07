@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -59,9 +60,21 @@ public class ScoreManager : MonoBehaviour
         wrongGuessCount++;
 
         if (wrongGuessCount < 3)
-            bossDialogue.StartDialogue();
+            StartCoroutine(ShowBossDialogue());
             
         playerData.ChangeLiveAmount(-1);
 
+    }
+
+    IEnumerator ShowBossDialogue(){
+        bossDialogue.gameObject.SetActive(true);
+        bossDialogue.StartDialogue();
+
+        yield return new WaitForSeconds(5f);
+
+        bossDialogue.StopDialogue();
+
+        yield return new WaitForSeconds(1f);
+        bossDialogue.gameObject.SetActive(false);
     }
 }

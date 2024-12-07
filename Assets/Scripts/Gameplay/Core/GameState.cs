@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
@@ -23,11 +24,14 @@ public class GameState : MonoBehaviour
 
     [Header("Other Components")]
     [SerializeField] Image gameOverRenderer;
+    [SerializeField] Button nextSceneButton;
     [SerializeField] TextMeshProUGUI continueText;
     [SerializeField] SoundController sound;
+    SceneLoader sceneLoader;
 
     void Start(){
         currentState = StateType.Going;
+        sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
     public static void GameWin(){
@@ -67,11 +71,13 @@ public class GameState : MonoBehaviour
         if (currentState == StateType.Win){
             gameOverRenderer.sprite = WinSpriteScreen;
             sound.PlayMusicOverload(1, 0.5f);
+            nextSceneButton.onClick.AddListener(sceneLoader.LoadNextScene);
         }
 
         if (currentState == StateType.Lost){
             gameOverRenderer.sprite = LostSpriteScreen;
             sound.PlayMusicOverload(2, 0.5f);
+            nextSceneButton.onClick.AddListener(sceneLoader.ReloadScene);
         }
         gameOverRenderer.gameObject.SetActive(true);
 

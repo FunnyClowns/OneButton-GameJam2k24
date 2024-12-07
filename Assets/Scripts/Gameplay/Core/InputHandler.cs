@@ -38,8 +38,6 @@ public class InputHandler : MonoBehaviour
     InputType currentInput = InputType.Accept;
 
     void Start(){
-        UpdateInputState();
-
         canSubmit = true;
     }
 
@@ -140,46 +138,5 @@ public class InputHandler : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         canSubmit = true;
-    }
-
-    // void InverseInputType(){
-        
-    //     // inverse input type
-
-    //     if (currentInput == InputType.Accept){
-    //         Debug.Log("Input deny");
-    //         currentInput = InputType.Deny;
-    //         handRenderer.sprite = denyHand;
-
-    //     } else {
-    //         Debug.Log("input accept");
-    //         currentInput = InputType.Accept;
-    //         handRenderer.sprite = approveHand;
-    //     }
-
-    //     UpdateInputState();
-    // }
-
-    void UpdateInputState(){
-
-        // if (currentInput == InputType.Accept){
-        //     acceptFiller.shouldUpdate = true;
-        //     denyFiller.shouldUpdate = false;
-
-        //     acceptSliderBG.SetActive(true);
-        //     denySliderBG.SetActive(false);
-
-        //     denyFiller.ResetSlider();
-        // } 
-
-        // else if (currentInput == InputType.Deny){
-        //     acceptFiller.shouldUpdate = false;
-        //     denyFiller.shouldUpdate = true;
-
-        //     acceptSliderBG.SetActive(false);
-        //     denySliderBG.SetActive(true);
-
-        //     acceptFiller.ResetSlider();
-        // }
     }
 }
