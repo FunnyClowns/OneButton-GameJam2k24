@@ -12,12 +12,17 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] DialogueController bossDialogue;
     public FormData formData;
     [SerializeField] TextMeshProUGUI tipsTMP;
+    SoundController sound;
     
 
     void Start(){
+        sound = FindObjectOfType<SoundController>(true);
+        sceneLoader = FindObjectOfType<SceneLoader>(true);
+    }
+
+    public void StartTutorial(){
         StartCoroutine(TutorialSequence());
-        
-        sceneLoader = GetComponent<SceneLoader>();
+        sound.PlayMusic(0);
     }
 
     IEnumerator TutorialSequence(){
