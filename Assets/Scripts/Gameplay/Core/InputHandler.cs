@@ -37,23 +37,29 @@ public class InputHandler : MonoBehaviour
 
     InputType currentInput = InputType.Accept;
 
+    const float STAMP_COOLDOWN = 1f;
+    float stampCooldownCounter;
+
     void Start(){
         canSubmit = true;
     }
 
-    // void InputStartReceiver(){
+    void Update(){
+        stampCooldownCounter -= Time.deltaTime;
 
-        
-    // }
+        Debug.Log(stampCooldownCounter);
+    }
 
     public void InputPerformedReceiver(){
-
+            
          // set button to gameplay
-        if (GameState.currentState == GameState.StateType.Going){
+        if (GameState.currentState == GameState.StateType.Going && stampCooldownCounter <= 0){
             if (canSubmit || isTutorial){
                     canSubmit = false;
 
                     OnSlowTapComplete();
+                    stampCooldownCounter = STAMP_COOLDOWN;
+                    Debug.Log("STAMP");
                 }
                 
         }
@@ -70,15 +76,6 @@ public class InputHandler : MonoBehaviour
             handRenderer.sprite = denyHand;
         }
     }
-
-    // void InputCancelledReceiver(){
-
-    //      // set button to gameplays
-    //     if (GameState.currentState == GameState.StateType.Going){
-    //         // InverseInputType();
-    //     }
-
-    // }
 
     void OnSlowTapComplete(){
 
