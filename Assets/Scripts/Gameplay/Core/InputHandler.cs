@@ -177,7 +177,7 @@ public class InputHandler : MonoBehaviour, ISliderValue
             yield break;
         }
 
-        formFactory.GenerateForm();
+        formFactory.ChoosesFormVariety();
 
         yield return new WaitForSeconds(1.5f);
 

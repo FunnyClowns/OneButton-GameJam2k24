@@ -34,22 +34,30 @@ public class FormFactory : MonoBehaviour
     [HideInInspector] public Form.FormData generatedFormData;
 
     void Start(){
-        GenerateForm();
-    }
-
-    public void GenerateForm(){
-        var formRNG = Random.value;
-
-        if (generatedForm != null){
-            DeleteActiveForm();
-        }
-
-        generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
         
+        CreateForm();
+
         if (!generatedForm.TryGetComponent<Form.FormData>(out generatedFormData)){
-            Debug.Log("Cant find generatedFormData in prefab");
+            Debug.LogError("Cant find form data at generated form");
             return;
         }
+        
+        ChoosesFormVariety();
+    }
+
+    void CreateForm(){
+        generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
+    }
+
+    public void ChoosesFormVariety(){
+        var formRNG = Random.value;
+        
+        if (!generatedForm.TryGetComponent<Form.FormData>(out generatedFormData)){
+            Debug.LogError("Cant find form data at generated form");
+            return;
+        }
+
+        generatedFormData.PlayInAnimation();
 
         if (formRNG > 0.4f){
             GenerateIncorrectForm();
@@ -60,6 +68,8 @@ public class FormFactory : MonoBehaviour
     }
     public void DeleteActiveForm(){
         Destroy(generatedForm);
+
+        Debug.Log ("Delete form");
     }
 
     void GenerateCorrectForm(){

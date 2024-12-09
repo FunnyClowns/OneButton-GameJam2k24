@@ -31,13 +31,11 @@ namespace Form {
         SpriteRenderer decisionStampRenderer;
         Animator decisionStampAnimator;
 
-        void Start(){   
+        void Awake(){   
             decisionStamp.TryGetComponent<Animator>(out decisionStampAnimator);
             decisionStamp.TryGetComponent<SpriteRenderer>(out decisionStampRenderer);
             
-            if (TryGetComponent<Animator>(out formAnimator)){
-                formAnimator.Play("Form In");
-            }
+            TryGetComponent<Animator>(out formAnimator);
 
             if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature){
                 signatureText.text = GetRandomSignatureName();
@@ -64,9 +62,21 @@ namespace Form {
             decisionStampAnimator.Play("StartStamping");
 
             Invoke(nameof(PlayExitAnimation), 1f);
+            Invoke(nameof(ResetForm), 2f);
         }
 
-        void PlayExitAnimation(){
+        void ResetForm(){
+            formSubmitted = false;
+            decisionStampAnimator.Play("Idle");
+
+            decisionStamp.SetActive(false);
+        }
+
+        public void PlayInAnimation(){
+            formAnimator.Play("Form In");
+        }
+
+        public void PlayExitAnimation(){
             formAnimator.Play("Form Out");
         }
 
