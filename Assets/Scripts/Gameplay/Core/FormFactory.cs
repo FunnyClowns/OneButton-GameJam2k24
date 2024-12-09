@@ -31,7 +31,7 @@ public class FormFactory : MonoBehaviour
     [SerializeField] GameObject formPrefab;
     [SerializeField] SoundController sound;
    
-    [HideInInspector] public FormData generatedFormData;
+    [HideInInspector] public Form.FormData generatedFormData;
 
     void Start(){
         GenerateForm();
@@ -46,7 +46,7 @@ public class FormFactory : MonoBehaviour
 
         generatedForm = Instantiate(formPrefab, formStartPosition, Quaternion.identity);
         
-        if (!generatedForm.TryGetComponent<FormData>(out generatedFormData)){
+        if (!generatedForm.TryGetComponent<Form.FormData>(out generatedFormData)){
             Debug.Log("Cant find generatedFormData in prefab");
             return;
         }
@@ -63,7 +63,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateCorrectForm(){
-        generatedFormData.thisFormType = FormData.FormType.Correct;
+        generatedFormData.thisFormType = Form.FormData.FormType.Correct;
 
         ChooseCorrectFormVariation();
 
@@ -76,7 +76,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateIncorrectForm(){ 
-        generatedFormData.thisFormType = FormData.FormType.Incorrect;
+        generatedFormData.thisFormType = Form.FormData.FormType.Incorrect;
 
         // chooses variation based on rng
         ChooseIncorrectFormVariation();
@@ -84,50 +84,50 @@ public class FormFactory : MonoBehaviour
         return;
     }
 
-        void ChooseIncorrectFormVariation(){
-            // generate random number of a enum length
-            int rng = Random.Range(0, Enum.GetNames(typeof(IncorrectFormVariation)).Length);
+    void ChooseIncorrectFormVariation(){
+        // generate random number of a enum length
+        int rng = Random.Range(0, Enum.GetNames(typeof(IncorrectFormVariation)).Length);
 
-            IncorrectFormVariation choosenFormVariation = (IncorrectFormVariation)rng;
-            generatedFormData.thisVariation = choosenFormVariation;
+        IncorrectFormVariation choosenFormVariation = (IncorrectFormVariation)rng;
+        generatedFormData.thisVariation = choosenFormVariation;
 
-            switch(choosenFormVariation){
+        switch(choosenFormVariation){
 
-                case IncorrectFormVariation.MissingSignature :
-                    generatedFormData.signatureText.text = " ";
-                    break;
+            case IncorrectFormVariation.MissingSignature :
+                generatedFormData.signatureText.text = " ";
+                break;
 
-                case IncorrectFormVariation.WrongBuildingPhoto :
-                    generatedFormData.buildingPhotoRenderer.sprite = incorrectBuildingPhoto[Random.Range(0, incorrectBuildingPhoto.Count)];
-                    break;
+            case IncorrectFormVariation.WrongBuildingPhoto :
+                generatedFormData.buildingPhotoRenderer.sprite = incorrectBuildingPhoto[Random.Range(0, incorrectBuildingPhoto.Count)];
+                break;
 
-                case IncorrectFormVariation.WrongStampColor :
-                    generatedFormData.stampRenderer.color = incorrectStampColor[Random.Range(0, incorrectStampColor.Count)];
-                    break;
+            case IncorrectFormVariation.WrongStampColor :
+                generatedFormData.stampRenderer.color = incorrectStampColor[Random.Range(0, incorrectStampColor.Count)];
+                break;
 
-                case IncorrectFormVariation.WrongStampShape :
-                    generatedFormData.stampRenderer.sprite = wrongStamp;
-                    break;
+            case IncorrectFormVariation.WrongStampShape :
+                generatedFormData.stampRenderer.sprite = wrongStamp;
+                break;
 
-                default :
-                    Debug.Log("Choosen Variation is " + choosenFormVariation);
-                    break;
-            }
-
-            // checks if variation is not wrong building, then do create correct photo
-            if (choosenFormVariation != IncorrectFormVariation.WrongBuildingPhoto)
-                generatedFormData.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
-
-            if (choosenFormVariation != IncorrectFormVariation.WrongStampColor){
-                generatedFormData.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
-            }
-
-            if (choosenFormVariation != IncorrectFormVariation.WrongStampShape){
-                generatedFormData.stampRenderer.sprite = correctStamp;
-            }
-
-            Debug.Log("Incorrect Form");
-
+            default :
+                Debug.Log("Choosen Variation is " + choosenFormVariation);
+                break;
         }
+
+        // checks if variation is not wrong building, then do create correct photo
+        if (choosenFormVariation != IncorrectFormVariation.WrongBuildingPhoto)
+            generatedFormData.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
+
+        if (choosenFormVariation != IncorrectFormVariation.WrongStampColor){
+            generatedFormData.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
+        }
+
+        if (choosenFormVariation != IncorrectFormVariation.WrongStampShape){
+            generatedFormData.stampRenderer.sprite = correctStamp;
+        }
+
+        Debug.Log("Incorrect Form");
+
+    }
 
 }
