@@ -228,7 +228,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameTimerHUD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4564220949334418408, guid: a6e646088defa90479faa278b6c23976, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -987,7 +988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.24990845}
+  m_AnchoredPosition: {x: 0, y: 0.24987793}
   m_SizeDelta: {x: 0, y: 0.49982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &909715330

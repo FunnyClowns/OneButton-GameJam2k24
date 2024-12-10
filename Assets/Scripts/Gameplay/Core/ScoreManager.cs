@@ -67,7 +67,6 @@ public class ScoreManager : MonoBehaviour
     }
 
     IEnumerator ShowBossDialogue(){
-        bossDialogue.gameObject.SetActive(true);
         bossDialogue.StartDialogue();
 
         yield return new WaitForSeconds(5f);
@@ -75,6 +74,5 @@ public class ScoreManager : MonoBehaviour
         bossDialogue.StopDialogue();
 
         yield return new WaitForSeconds(1f);
-        bossDialogue.gameObject.SetActive(false);
     }
 }

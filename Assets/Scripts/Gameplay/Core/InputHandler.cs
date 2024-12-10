@@ -47,7 +47,7 @@ public class InputHandler : MonoBehaviour
     void Update(){
         stampCooldownCounter -= Time.deltaTime;
 
-        Debug.Log(stampCooldownCounter);
+        // Debug.Log(stampCooldownCounter);
     }
 
     public void InputPerformedReceiver(){
