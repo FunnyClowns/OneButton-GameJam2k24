@@ -30,21 +30,13 @@ public class PointClick : MonoBehaviour, IMouse
         
         currentDrag = this;
 
-        switch (mouse.clickCount.ReadValue()){
-            
-            // singular click
-            case 1:
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mouse.position.ReadValue()), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mouse.position.ReadValue()), Vector2.zero);
 
-                if (hit.collider != null){
-                    if (hit.transform.TryGetComponent<IMouse>(out currentDrag)){
-                        currentDrag.OnMouseClick(context);
-                        drag.started += currentDrag.OnMouseGrab;
-                    }
-                }
-
-                break;
-
+        if (hit.collider != null){
+            if (hit.transform.TryGetComponent<IMouse>(out currentDrag)){
+                currentDrag.OnMouseClick(context);
+                drag.started += currentDrag.OnMouseGrab;
+            }
         }
     }
 
