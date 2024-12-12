@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Other Components")]
     [SerializeField] DialogueController bossDialogue;
-    public Form.FormData formData;
+    public FormData formData;
     [SerializeField] TextMeshProUGUI tipsTMP;
     
 

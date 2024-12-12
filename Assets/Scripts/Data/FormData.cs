@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Form {
-    public class FormData : MonoBehaviour {
+public class FormData : MonoBehaviour {
         public enum FormType{
             Correct,
             Incorrect,
@@ -132,5 +130,3 @@ namespace Form {
             return choosenName;
         }
     }
-
-}

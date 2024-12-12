@@ -26,17 +26,17 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    public void ProgressScore(Form.FormData.FormType form, InputHandler.InputType input){
+    public void ProgressScore(FormData.FormType form, InputHandler.InputType input){
 
         if (input == InputHandler.InputType.Accept)
-            if (form == Form.FormData.FormType.Correct){
+            if (form == FormData.FormType.Correct){
                 CorrectGuess();
             } else {
                 IncorrectGuess();
             }
 
         else if (input == InputHandler.InputType.Deny)
-            if (form == Form.FormData.FormType.Incorrect){
+            if (form == FormData.FormType.Incorrect){
                 CorrectGuess();
             } else {
                 IncorrectGuess();

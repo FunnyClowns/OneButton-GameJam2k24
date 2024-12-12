@@ -31,13 +31,13 @@ public class FormFactory : MonoBehaviour
     [SerializeField] GameObject formPrefab;
     [SerializeField] SoundController sound;
    
-    [HideInInspector] public Form.FormData generatedFormData;
+    [HideInInspector] public FormData generatedFormData;
 
     void Start(){
         
         CreateForm();
 
-        if (!generatedForm.TryGetComponent<Form.FormData>(out generatedFormData)){
+        if (!generatedForm.TryGetComponent<FormData>(out generatedFormData)){
             Debug.LogError("Cant find form data at generated form");
             return;
         }
@@ -52,7 +52,7 @@ public class FormFactory : MonoBehaviour
     public void ChoosesFormVariety(){
         var formRNG = Random.value;
         
-        if (!generatedForm.TryGetComponent<Form.FormData>(out generatedFormData)){
+        if (!generatedForm.TryGetComponent<FormData>(out generatedFormData)){
             Debug.LogError("Cant find form data at generated form");
             return;
         }
@@ -73,7 +73,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateCorrectForm(){
-        generatedFormData.thisFormType = Form.FormData.FormType.Correct;
+        generatedFormData.thisFormType = FormData.FormType.Correct;
 
         ChooseCorrectFormVariation();
 
@@ -86,7 +86,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void GenerateIncorrectForm(){ 
-        generatedFormData.thisFormType = Form.FormData.FormType.Incorrect;
+        generatedFormData.thisFormType = FormData.FormType.Incorrect;
 
         // chooses variation based on rng
         ChooseIncorrectFormVariation();
