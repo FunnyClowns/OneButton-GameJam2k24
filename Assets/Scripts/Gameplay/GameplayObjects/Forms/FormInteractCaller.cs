@@ -4,7 +4,8 @@ public class FormInteractCaller : MonoBehaviour
 {
 
     enum InteractType {
-        Stamp,
+        StampApprove,
+        StampDeny,
         Write,
         Signature,
     }
@@ -18,21 +19,25 @@ public class FormInteractCaller : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 1f, interactableMask);
 
         if (hit.collider != null)
-            if (hit.transform.TryGetComponent<FormInteraction>(out FormInteraction form))
+            if (hit.transform.TryGetComponent<FormBehaviour>(out FormBehaviour form))
             {
                 Debug.Log("Hit : " + hit.transform.gameObject.name);
 
                 switch (thisType){
-                    case InteractType.Stamp :
-                        form.StampThis();
+                    case InteractType.StampApprove :
+                        form.StampForm(InputHandler.InputType.Accept);
+                        break;
+
+                    case InteractType.StampDeny :
+                        form.StampForm(InputHandler.InputType.Deny);
                         break;
 
                     case InteractType.Write :
-                        form.WriteSomething();
+                        // form.WriteSomething();
                         break;
 
                     case InteractType.Signature :
-                        form.SignForm();
+                        // form.SignForm();
                         break;
 
                     default :
