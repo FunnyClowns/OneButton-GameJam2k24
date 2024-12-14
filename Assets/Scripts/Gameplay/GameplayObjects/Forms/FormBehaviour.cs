@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FormBehaviour : MonoBehaviour
@@ -7,6 +8,8 @@ public class FormBehaviour : MonoBehaviour
     
     void Start(){
         data = GetComponent<FormData>();
+
+        PlayInAnimation();
     }
 
     public void StampForm(InputHandler.InputType choice){
@@ -28,11 +31,48 @@ public class FormBehaviour : MonoBehaviour
 
     public void SubmitForm(){
 
-        if (data.formSubmitted)
+        if (data.formSubmitted || !data.formStamped)
             return;
 
         data.formSubmitted = true;
 
-        this.gameObject.SetActive(false);
+        EnableAnimator();
+        ResetForm();
+        
+        StartCoroutine(SubmitCoroutine());
+    }
+
+    IEnumerator SubmitCoroutine(){
+
+        yield return new WaitUntil(() => data.formAnimator.enabled);
+        PlayInAnimation();
+    }
+
+    void ResetForm(){
+        data.formSubmitted = false;
+        data.formStamped = false;
+
+        data.formAnimator.Play("Idle");
+
+        data.decisionStamp.SetActive(false);
+    }
+
+    public void PlayInAnimation(){
+        data.formAnimator.Play("Form In");
+        
+        Invoke(nameof(DisableAnimator), 1.2f);
+    }
+
+    public void PlayExitAnimation(){
+        data.formAnimator.Play("Form Out");
+    }
+
+    void EnableAnimator(){
+        data.formAnimator.enabled = true;
+    }
+
+    // disable animator so form can be dragged
+    void DisableAnimator(){
+        data.formAnimator.enabled = false;
     }
 }

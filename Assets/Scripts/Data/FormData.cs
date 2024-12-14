@@ -11,12 +11,13 @@ public class FormData : MonoBehaviour {
         [HideInInspector] public FormFactory.IncorrectFormVariation thisVariation;
 
         [HideInInspector] public bool formSubmitted;
+        [HideInInspector] public bool formStamped;
 
 
 
-        [Header("Form Sprites"), SerializeField]
-        Sprite approvedStamp;
-        [SerializeField] Sprite deniedStamp;
+        [Header("Form Sprites")]
+        public Sprite approvedStamp;
+        public Sprite deniedStamp;
 
 
         [Header("Form Components")]
@@ -24,16 +25,15 @@ public class FormData : MonoBehaviour {
         public SpriteRenderer buildingPhotoRenderer;
         public SpriteRenderer stampRenderer;
         public GameObject decisionStamp;
-        Animator formAnimator;
+        [HideInInspector] public Animator formAnimator;
 
-        SpriteRenderer decisionStampRenderer;
-        Animator decisionStampAnimator;
+        [HideInInspector] public SpriteRenderer decisionStampRenderer;
+        [HideInInspector] public Animator decisionStampAnimator;
 
         void Awake(){   
-            decisionStamp.TryGetComponent<Animator>(out decisionStampAnimator);
-            decisionStamp.TryGetComponent<SpriteRenderer>(out decisionStampRenderer);
-            
-            TryGetComponent<Animator>(out formAnimator);
+            if (!SucceedInitializeComponents()){
+                Debug.LogError("Cant fully initialize components here");
+            }
 
             if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature){
                 signatureText.text = GetRandomSignatureName();
@@ -42,40 +42,17 @@ public class FormData : MonoBehaviour {
             VariateObjectTransform();
         }
 
-        public void SubmitForm(InputHandler.InputType choice){
+        bool SucceedInitializeComponents(){
+            if (!decisionStamp.TryGetComponent<Animator>(out decisionStampAnimator))
+                return false;
 
-            if (formSubmitted){
-                return;
-            }
-            formSubmitted = true;
+            if (!decisionStamp.TryGetComponent<SpriteRenderer>(out decisionStampRenderer))
+                return false;
 
-            decisionStamp.SetActive(true);
-
-            if (choice == InputHandler.InputType.Accept)
-                decisionStampRenderer.sprite = approvedStamp;
-
-            if (choice == InputHandler.InputType.Deny)
-                decisionStampRenderer.sprite = deniedStamp;
-
-            decisionStampAnimator.Play("StartStamping");
-
-            Invoke(nameof(PlayExitAnimation), 1f);
-            Invoke(nameof(ResetForm), 2f);
-        }
-
-        void ResetForm(){
-            formSubmitted = false;
-            decisionStampAnimator.Play("Idle");
-
-            decisionStamp.SetActive(false);
-        }
-
-        public void PlayInAnimation(){
-            formAnimator.Play("Form In");
-        }
-
-        public void PlayExitAnimation(){
-            formAnimator.Play("Form Out");
+            if (!TryGetComponent<Animator>(out formAnimator))
+                return false;
+            
+            return true;
         }
 
         void VariateObjectTransform(){
