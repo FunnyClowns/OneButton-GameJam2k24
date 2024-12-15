@@ -54,7 +54,7 @@ public class FormData : MonoBehaviour {
             return true;
         }
 
-        void VariateObjectTransform(){
+        public void VariateObjectTransform(){
             // stamp
             RandomizeTransformPosition(stampRenderer.transform, 0.05f, 0.05f);
             RandomizeTransformScale(stampRenderer.transform, 1.1f);

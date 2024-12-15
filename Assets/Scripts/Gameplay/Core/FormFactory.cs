@@ -50,6 +50,8 @@ public class FormFactory : MonoBehaviour
             SetFormToCorrect();
         }
 
+        thisSceneForm.VariateObjectTransform();
+
     }
 
     void SetFormToCorrect(){
