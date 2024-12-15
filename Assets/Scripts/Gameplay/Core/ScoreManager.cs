@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ProgressScore(FormData.FormType form, InputHandler.InputType input){
 
+        // checks form type and player choice
         if (input == InputHandler.InputType.Accept)
             if (form == FormData.FormType.Correct){
                 CorrectGuess();
@@ -43,6 +44,12 @@ public class ScoreManager : MonoBehaviour
             }
         
         remainingFormCount--;
+
+        if (remainingFormCount <= 0){
+            GameState.GameWin();
+            return;
+        }
+
         UpdateText();
     }
 
