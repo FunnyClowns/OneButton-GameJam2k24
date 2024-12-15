@@ -19,8 +19,11 @@ public class FormData : MonoBehaviour {
         public Sprite approvedStamp;
         public Sprite deniedStamp;
 
+        [Header("Form Components State")]
+        [HideInInspector] public InputHandler.InputType stampState;
 
-        [Header("Form Components")]
+
+        [Header("Form Components Variables")]
         public TextMeshPro signatureText;
         public SpriteRenderer buildingPhotoRenderer;
         public SpriteRenderer stampRenderer;
@@ -33,10 +36,6 @@ public class FormData : MonoBehaviour {
         void Awake(){   
             if (!SucceedInitializeComponents()){
                 Debug.LogError("Cant fully initialize components here");
-            }
-
-            if (thisFormType == FormType.Correct || thisVariation != FormFactory.IncorrectFormVariation.MissingSignature){
-                signatureText.text = GetRandomSignatureName();
             }
             
             VariateObjectTransform();

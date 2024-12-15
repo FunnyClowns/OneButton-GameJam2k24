@@ -5,9 +5,13 @@ public class FormBehaviour : MonoBehaviour
 {
 
     FormData data;
+    ScoreManager score;
+    FormFactory formFactory;
     
     void Start(){
         data = GetComponent<FormData>();
+        score = FindObjectOfType<ScoreManager>();
+        formFactory = FindObjectOfType<FormFactory>();
 
         PlayInAnimation();
     }
@@ -18,15 +22,19 @@ public class FormBehaviour : MonoBehaviour
         }
         data.formStamped = true;
 
+        data.stampState = choice;
         data.decisionStamp.SetActive(true);
 
-        if (choice == InputHandler.InputType.Accept)
+        if (data.stampState == InputHandler.InputType.Accept)
             data.decisionStampRenderer.sprite = data.approvedStamp;
 
-        if (choice == InputHandler.InputType.Deny)
+        if (data.stampState == InputHandler.InputType.Deny)
             data.decisionStampRenderer.sprite = data.deniedStamp;
 
         data.decisionStampAnimator.Play("StartStamping");
+
+        // Debug.Log("Stamp choice : " + choice);
+        // Debug.Log("Form type : " + data.thisFormType);
     }
 
     public void SubmitForm(){
@@ -37,6 +45,7 @@ public class FormBehaviour : MonoBehaviour
         data.formSubmitted = true;
 
         EnableAnimator();
+        UpdateGlobalScore();
         ResetForm();
         
         StartCoroutine(SubmitCoroutine());
@@ -55,6 +64,8 @@ public class FormBehaviour : MonoBehaviour
         data.formAnimator.Play("Idle");
 
         data.decisionStamp.SetActive(false);
+
+        ChooseNewVariation();
     }
 
     public void PlayInAnimation(){
@@ -74,5 +85,13 @@ public class FormBehaviour : MonoBehaviour
     // disable animator so form can be dragged
     void DisableAnimator(){
         data.formAnimator.enabled = false;
+    }
+
+    void UpdateGlobalScore(){
+        score.ProgressScore(data.thisFormType, data.stampState);
+    }
+
+    void ChooseNewVariation(){
+        formFactory.ChooseRandomFormType();
     }
 }
