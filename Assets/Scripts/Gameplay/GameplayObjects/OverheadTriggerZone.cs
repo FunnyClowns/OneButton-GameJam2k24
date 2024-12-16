@@ -13,7 +13,7 @@ public class OverheadTriggerZone : MonoBehaviour
     void OnTriggerStay2D (Collider2D col){
         
         if (col.transform.TryGetComponent<MoveOnDrag>(out collidingObject)){
-            Debug.Log("Something enter");
+            // Debug.Log("Something enter");
             if (!collidingObject.isDragged){
                 Debug.Log("Submit form");
                 completedEvent.Invoke();
