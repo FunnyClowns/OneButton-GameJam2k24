@@ -38,10 +38,18 @@ public class FormFactory : MonoBehaviour
         
         thisSceneForm = FindObjectOfType<FormData>();
         
+        RecycleForm();
+    }
+
+    public void RecycleForm(){
+        thisSceneForm.SetSignatureRandomName();
+        thisSceneForm.stampRenderer.sprite = correctStamp;
+        thisSceneForm.VariateObjectTransform();
+
         ChooseRandomFormType();
     }
 
-    public void ChooseRandomFormType(){
+    void ChooseRandomFormType(){
         var formRNG = Random.value;
 
         if (formRNG > 0.4f){
@@ -49,8 +57,6 @@ public class FormFactory : MonoBehaviour
         } else {
             SetFormToCorrect();
         }
-
-        thisSceneForm.VariateObjectTransform();
 
     }
 

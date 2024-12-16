@@ -56,8 +56,7 @@ public class FormData : MonoBehaviour {
 
         public void VariateObjectTransform(){
             // stamp
-            RandomizeTransformPosition(stampRenderer.transform, 0.05f, 0.05f);
-            RandomizeTransformScale(stampRenderer.transform, 1.1f);
+            RandomizeTransformPosition(stampRenderer.transform, 0.02f, 0.02f);
             RandomizeTransformRotation(stampRenderer.transform, 15f);
 
             // building photo
@@ -85,7 +84,7 @@ public class FormData : MonoBehaviour {
             return;
         }
 
-        string GetRandomSignatureName(){
+        public void SetSignatureRandomName(){
 
             string[] clientNames = {"Aaron", "Adam", "Adrian", "Albert", "Alexander", "Andrew", "Arthur", "Austin", 
             "Benjamin", "Bernard", "Blake", "Bradley", "Brandon", "Brian", "Bruce", "Caleb", 
@@ -103,6 +102,6 @@ public class FormData : MonoBehaviour {
 
             var choosenName = clientNames[Random.Range(0, clientNames.Length - 1)];
 
-            return choosenName;
+            signatureText.text = choosenName;
         }
     }

@@ -65,7 +65,7 @@ public class FormBehaviour : MonoBehaviour
 
         data.decisionStamp.SetActive(false);
 
-        ChooseNewVariation();
+        formFactory.RecycleForm();
     }
 
     public void PlayInAnimation(){
@@ -89,9 +89,5 @@ public class FormBehaviour : MonoBehaviour
 
     void UpdateGlobalScore(){
         score.ProgressScore(data.thisFormType, data.stampState);
-    }
-
-    void ChooseNewVariation(){
-        formFactory.ChooseRandomFormType();
     }
 }
