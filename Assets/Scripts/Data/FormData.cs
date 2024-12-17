@@ -23,7 +23,7 @@ public class FormData : MonoBehaviour {
         [HideInInspector] public StampAttributes.InputTypes stampState;
 
 
-        [Header("Form Components Variables")]
+        [Header("Form Components")]
         public TextMeshPro signatureText;
         public SpriteRenderer buildingPhotoRenderer;
         public SpriteRenderer stampRenderer;
