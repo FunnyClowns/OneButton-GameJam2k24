@@ -20,7 +20,7 @@ public class FormData : MonoBehaviour {
         public Sprite deniedStamp;
 
         [Header("Form Components State")]
-        [HideInInspector] public InputHandler.InputType stampState;
+        [HideInInspector] public StampAttributes.InputTypes stampState;
 
 
         [Header("Form Components Variables")]

@@ -25,11 +25,11 @@ public class FormInteractCaller : MonoBehaviour
 
                 switch (thisType){
                     case InteractType.StampApprove :
-                        form.StampForm(InputHandler.InputType.Accept);
+                        form.StampForm(StampAttributes.InputTypes.Approve);
                         break;
 
                     case InteractType.StampDeny :
-                        form.StampForm(InputHandler.InputType.Deny);
+                        form.StampForm(StampAttributes.InputTypes.Deny);
                         break;
 
                     case InteractType.Write :

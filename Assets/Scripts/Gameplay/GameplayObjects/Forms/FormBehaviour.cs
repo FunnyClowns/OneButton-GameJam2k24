@@ -16,7 +16,7 @@ public class FormBehaviour : MonoBehaviour
         PlayInAnimation();
     }
 
-    public void StampForm(InputHandler.InputType choice){
+    public void StampForm(StampAttributes.InputTypes choice){
         if (data.formStamped){
             return;
         }
@@ -25,10 +25,10 @@ public class FormBehaviour : MonoBehaviour
         data.stampState = choice;
         data.decisionStamp.SetActive(true);
 
-        if (data.stampState == InputHandler.InputType.Accept)
+        if (data.stampState == StampAttributes.InputTypes.Approve)
             data.decisionStampRenderer.sprite = data.approvedStamp;
 
-        if (data.stampState == InputHandler.InputType.Deny)
+        if (data.stampState == StampAttributes.InputTypes.Deny)
             data.decisionStampRenderer.sprite = data.deniedStamp;
 
         data.decisionStampAnimator.Play("StartStamping");
