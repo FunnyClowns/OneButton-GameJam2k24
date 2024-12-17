@@ -38,6 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1893036789
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: PaperObjects Down
+    uniqueID: 54335367
+    locked: 0
+  - name: PaperObjects Up
+    uniqueID: 2243697543
+    locked: 0
+  - name: GameplayObject
+    uniqueID: 2602390317
+    locked: 0
+  - name: UI
+    uniqueID: 57658345
     locked: 0
