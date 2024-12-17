@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FormBehaviour : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class FormBehaviour : MonoBehaviour
 
         if (data.stampState == StampAttributes.InputTypes.Deny)
             data.decisionStampRenderer.sprite = data.deniedStamp;
+
+        data.decisionStamp.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         data.decisionStampAnimator.Play("StartStamping");
 
