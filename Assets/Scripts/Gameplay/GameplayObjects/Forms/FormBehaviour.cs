@@ -46,22 +46,21 @@ public class FormBehaviour : MonoBehaviour
 
         EnableAnimator();
         UpdateGlobalScore();
-        ResetForm();
+        PlayExitAnimation();
         
         StartCoroutine(SubmitCoroutine());
     }
 
     IEnumerator SubmitCoroutine(){
 
-        yield return new WaitUntil(() => data.formAnimator.enabled);
+        yield return new WaitForSeconds(1.1f);
+        ResetForm();
         PlayInAnimation();
     }
 
     void ResetForm(){
         data.formSubmitted = false;
         data.formStamped = false;
-
-        data.formAnimator.Play("Idle");
 
         data.decisionStamp.SetActive(false);
 
