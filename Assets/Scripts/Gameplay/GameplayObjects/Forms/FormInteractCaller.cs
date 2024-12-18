@@ -10,20 +10,20 @@ public class FormInteractCaller : MonoBehaviour
         Signature,
     }
 
-    [SerializeField] InteractType thisType;
+    [SerializeField] InteractType thisInteractType;
 
-    [SerializeField] LayerMask interactableMask;
+    [SerializeField] LayerMask interactableLM;
 
     public void GetInterectableObject(){
 
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 1f, interactableMask);
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 1f, interactableLM);
 
         if (hit.collider != null)
             if (hit.transform.TryGetComponent<FormBehaviour>(out FormBehaviour form))
             {
                 Debug.Log("Hit : " + hit.transform.gameObject.name);
 
-                switch (thisType){
+                switch (thisInteractType){
                     case InteractType.StampApprove :
                         form.StampForm(StampAttributes.InputTypes.Approve);
                         break;
