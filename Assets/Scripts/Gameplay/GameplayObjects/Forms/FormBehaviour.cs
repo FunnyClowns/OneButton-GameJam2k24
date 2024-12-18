@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class FormBehaviour : MonoBehaviour
 {
@@ -8,6 +7,9 @@ public class FormBehaviour : MonoBehaviour
     FormData data;
     ScoreManager score;
     FormFactory formFactory;
+
+    [SerializeField] Transform trStampApprove;
+    [SerializeField] Transform trStampDeny;
     
     void Start(){
         data = GetComponent<FormData>();
@@ -26,13 +28,15 @@ public class FormBehaviour : MonoBehaviour
         data.stampState = choice;
         data.decisionStamp.SetActive(true);
 
-        if (data.stampState == StampAttributes.InputTypes.Approve)
+        if (data.stampState == StampAttributes.InputTypes.Approve){
             data.decisionStampRenderer.sprite = data.approvedStamp;
+            data.decisionStamp.transform.position = trStampApprove.position;
+        }
 
-        if (data.stampState == StampAttributes.InputTypes.Deny)
+        if (data.stampState == StampAttributes.InputTypes.Deny){
             data.decisionStampRenderer.sprite = data.deniedStamp;
-
-        data.decisionStamp.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            data.decisionStamp.transform.position = trStampDeny.position;
+        }
 
         data.decisionStampAnimator.Play("StartStamping");
 
