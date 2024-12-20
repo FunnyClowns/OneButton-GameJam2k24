@@ -261,8 +261,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3008760092404069407}
   - component: {fileID: 1373695763589573757}
-  - component: {fileID: 8678371324624887487}
   - component: {fileID: 283514668584958344}
+  - component: {fileID: 2705251484700953221}
+  - component: {fileID: 734800121356424061}
   - component: {fileID: 4211975549964595878}
   - component: {fileID: 2599631100292372287}
   - component: {fileID: 2353308340304273107}
@@ -346,7 +347,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8678371324624887487
+--- !u!114 &283514668584958344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680979066311328138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c33d98ead591247a3cf439d6578311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trStampApprove: {fileID: 0}
+  trStampDeny: {fileID: 0}
+--- !u!114 &2705251484700953221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680979066311328138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f72a097044b00247a3023e42f762cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalForm: {fileID: 11400000, guid: 9c2f39a5d060cf34b93d9771724847cd, type: 2}
+  activeStyle: {fileID: 0}
+  srPaperform: {fileID: 1373695763589573757}
+  signatureText: {fileID: 5211977436644353286}
+  buildingPhotoRenderer: {fileID: 444567690825311685}
+  stampRenderer: {fileID: 7570315733602016782}
+  decisionStamp: {fileID: 6747643425721243595}
+  formAnimator: {fileID: 0}
+  approveStampSprite: {fileID: 21300000, guid: c24dcb656b656074ca586cf8b3f63a9a, type: 3}
+  denyStampSprite: {fileID: 21300000, guid: 621300a57ef693646a2a3b1ac67f9347, type: 3}
+  decisionStampRenderer: {fileID: 0}
+  decisionStampAnimator: {fileID: 0}
+--- !u!114 &734800121356424061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,28 +401,7 @@ MonoBehaviour:
   thisVariation: 0
   formSubmitted: 0
   formStamped: 0
-  approvedStamp: {fileID: 21300000, guid: c24dcb656b656074ca586cf8b3f63a9a, type: 3}
-  deniedStamp: {fileID: 21300000, guid: 621300a57ef693646a2a3b1ac67f9347, type: 3}
   stampState: 0
-  signatureText: {fileID: 5211977436644353286}
-  buildingPhotoRenderer: {fileID: 444567690825311685}
-  stampRenderer: {fileID: 7570315733602016782}
-  decisionStamp: {fileID: 6747643425721243595}
-  formAnimator: {fileID: 0}
-  decisionStampRenderer: {fileID: 0}
-  decisionStampAnimator: {fileID: 0}
---- !u!114 &283514668584958344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5680979066311328138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c33d98ead591247a3cf439d6578311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4211975549964595878
 MonoBehaviour:
   m_ObjectHideFlags: 0
