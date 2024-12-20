@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,38 +12,30 @@ public class FormFactory : MonoBehaviour
         WrongStampShape,
     }
 
-    [Header("Form Components")]
-    FormData thisSceneForm;
-    [SerializeField] Sprite correctStamp;
-    [SerializeField] Sprite wrongStamp;
-    [SerializeField] List<Sprite> correctBuildingPhoto;
-    [SerializeField] List<Sprite> incorrectBuildingPhoto;
-    [SerializeField] List<Color> correctStampColor;
-    [SerializeField] List<Color> incorrectStampColor;
-
-
-    [Header("Form Generation Data")]
-    [SerializeField] Vector2 formStartPosition;
-    GameObject generatedForm;
+    [Header("Form Variables")]
+    FormData formData;
+    FormAttributes formAttributes;
+    FormStyleData _activeFormStyle;
 
     
     [Header("Other Components")]
     [SerializeField] GameObject formPrefab;
     [SerializeField] SoundController sound;
-   
-    [HideInInspector] public FormData generatedFormData;
 
     void Start(){
         
-        thisSceneForm = FindObjectOfType<FormData>();
+        formData = FindObjectOfType<FormData>();
+        formAttributes = FindObjectOfType<FormAttributes>();
+
+        _activeFormStyle = formAttributes.activeStyle;
         
         RecycleForm();
     }
 
     public void RecycleForm(){
-        thisSceneForm.SetSignatureRandomName();
-        thisSceneForm.stampRenderer.sprite = correctStamp;
-        thisSceneForm.VariateObjectTransform();
+        formAttributes.SetSignatureRandomName();
+        formAttributes.stampRenderer.sprite = _activeFormStyle.validStampSprite;
+        formAttributes.VariateObjectTransform();
 
         ChooseRandomFormType();
     }
@@ -61,7 +52,7 @@ public class FormFactory : MonoBehaviour
     }
 
     void SetFormToCorrect(){
-        thisSceneForm.thisFormType = FormData.FormType.Correct;
+        formData.thisFormType = FormData.FormType.Correct;
 
         SetCorrectVariation();
 
@@ -69,12 +60,12 @@ public class FormFactory : MonoBehaviour
     }
 
     void SetCorrectVariation(){
-        thisSceneForm.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
-        thisSceneForm.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
+        formAttributes.buildingPhotoRenderer.sprite = _activeFormStyle.validBuildingSprites[Random.Range(0, _activeFormStyle.validBuildingSprites.Count)];
+        formAttributes.stampRenderer.color = _activeFormStyle.validStampColors[Random.Range(0, _activeFormStyle.validStampColors.Count)];
     }
 
     void SetFormToIncorrect(){ 
-        thisSceneForm.thisFormType = FormData.FormType.Incorrect;
+        formData.thisFormType = FormData.FormType.Incorrect;
 
         // chooses variation based on rng
         SetIncorrectVariation();
@@ -87,24 +78,24 @@ public class FormFactory : MonoBehaviour
         int rng = Random.Range(0, Enum.GetNames(typeof(IncorrectFormVariation)).Length);
 
         IncorrectFormVariation choosenFormVariation = (IncorrectFormVariation)rng;
-        thisSceneForm.thisVariation = choosenFormVariation;
+        formData.thisVariation = choosenFormVariation;
 
         switch(choosenFormVariation){
 
             case IncorrectFormVariation.MissingSignature :
-                thisSceneForm.signatureText.text = " ";
+                formAttributes.signatureText.text = " ";
                 break;
 
             case IncorrectFormVariation.WrongBuildingPhoto :
-                thisSceneForm.buildingPhotoRenderer.sprite = incorrectBuildingPhoto[Random.Range(0, incorrectBuildingPhoto.Count)];
+                formAttributes.buildingPhotoRenderer.sprite = _activeFormStyle.invalidBuildingSprites[Random.Range(0, _activeFormStyle.invalidBuildingSprites.Count)];
                 break;
 
             case IncorrectFormVariation.WrongStampColor :
-                thisSceneForm.stampRenderer.color = incorrectStampColor[Random.Range(0, incorrectStampColor.Count)];
+                formAttributes.stampRenderer.color = _activeFormStyle.invalidStampColors[Random.Range(0, _activeFormStyle.invalidStampColors.Count)];
                 break;
 
             case IncorrectFormVariation.WrongStampShape :
-                thisSceneForm.stampRenderer.sprite = wrongStamp;
+                formAttributes.stampRenderer.sprite = _activeFormStyle.invalidStampSprites[Random.Range(0, _activeFormStyle.invalidStampSprites.Count)];
                 break;
 
             default :
@@ -114,14 +105,14 @@ public class FormFactory : MonoBehaviour
 
         // checks if variation is not wrong building, then do create correct photo
         if (choosenFormVariation != IncorrectFormVariation.WrongBuildingPhoto)
-            thisSceneForm.buildingPhotoRenderer.sprite = correctBuildingPhoto[Random.Range(0, correctBuildingPhoto.Count)];
+            formAttributes.buildingPhotoRenderer.sprite = _activeFormStyle.validBuildingSprites[Random.Range(0, _activeFormStyle.validBuildingSprites.Count)];
 
         if (choosenFormVariation != IncorrectFormVariation.WrongStampColor){
-            thisSceneForm.stampRenderer.color = correctStampColor[Random.Range(0, correctStampColor.Count)];
+            formAttributes.stampRenderer.color = _activeFormStyle.validStampColors[Random.Range(0, _activeFormStyle.validStampColors.Count)];
         }
 
         if (choosenFormVariation != IncorrectFormVariation.WrongStampShape){
-            thisSceneForm.stampRenderer.sprite = correctStamp;
+            formAttributes.stampRenderer.sprite = _activeFormStyle.validStampSprite;
         }
 
         Debug.Log("Incorrect Form");

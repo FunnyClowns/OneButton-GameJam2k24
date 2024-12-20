@@ -5,6 +5,7 @@ public class FormBehaviour : MonoBehaviour
 {
 
     FormData data;
+    FormAttributes attributes;
     ScoreManager score;
     FormFactory formFactory;
 
@@ -13,6 +14,7 @@ public class FormBehaviour : MonoBehaviour
     
     void Start(){
         data = GetComponent<FormData>();
+        attributes = GetComponent<FormAttributes>();
         score = FindObjectOfType<ScoreManager>();
         formFactory = FindObjectOfType<FormFactory>();
 
@@ -26,19 +28,19 @@ public class FormBehaviour : MonoBehaviour
         data.formStamped = true;
 
         data.stampState = choice;
-        data.decisionStamp.SetActive(true);
+        attributes.decisionStamp.SetActive(true);
 
         if (data.stampState == StampAttributes.InputTypes.Approve){
-            data.decisionStampRenderer.sprite = data.approvedStamp;
-            data.decisionStamp.transform.position = trStampApprove.position;
+            attributes.decisionStampRenderer.sprite = attributes.approveStampSprite;
+            attributes.decisionStamp.transform.position = trStampApprove.position;
         }
 
         if (data.stampState == StampAttributes.InputTypes.Deny){
-            data.decisionStampRenderer.sprite = data.deniedStamp;
-            data.decisionStamp.transform.position = trStampDeny.position;
+            attributes.decisionStampRenderer.sprite = attributes.denyStampSprite;
+            attributes.decisionStamp.transform.position = trStampDeny.position;
         }
 
-        data.decisionStampAnimator.Play("StartStamping");
+        attributes.decisionStampAnimator.Play("StartStamping");
 
         // Debug.Log("Stamp choice : " + choice);
         // Debug.Log("Form type : " + data.thisFormType);
@@ -69,28 +71,28 @@ public class FormBehaviour : MonoBehaviour
         data.formSubmitted = false;
         data.formStamped = false;
 
-        data.decisionStamp.SetActive(false);
+        attributes.decisionStamp.SetActive(false);
 
         formFactory.RecycleForm();
     }
 
     public void PlayInAnimation(){
-        data.formAnimator.Play("Form In");
+        attributes.formAnimator.Play("Form In");
         
         Invoke(nameof(DisableAnimator), 1.2f);
     }
 
     public void PlayExitAnimation(){
-        data.formAnimator.Play("Form Out");
+        attributes.formAnimator.Play("Form Out");
     }
 
     void EnableAnimator(){
-        data.formAnimator.enabled = true;
+        attributes.formAnimator.enabled = true;
     }
 
     // disable animator so form can be dragged
     void DisableAnimator(){
-        data.formAnimator.enabled = false;
+        attributes.formAnimator.enabled = false;
     }
 
     void UpdateGlobalScore(){

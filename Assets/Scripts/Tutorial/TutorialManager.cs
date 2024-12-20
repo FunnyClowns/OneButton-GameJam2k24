@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Other Components")]
     [SerializeField] DialogueController bossDialogue;
     public FormData formData;
+    public FormAttributes formAttributes;
     [SerializeField] TextMeshProUGUI tipsTMP;
     
 
@@ -81,7 +82,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(4.5f);
 
-        formData.gameObject.SetActive(true);
+        formAttributes.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
